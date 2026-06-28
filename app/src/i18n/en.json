@@ -1,0 +1,93 @@
+{
+  "common": {
+    "addToBasket": "Add to basket",
+    "tryAgain": "Try again",
+    "networkError": "Could not reach the server. Check your connection and try again.",
+    "unexpectedResponse": "The server returned an unexpected response.",
+    "somethingWentWrong": "Something went wrong."
+  },
+  "navigation": {
+    "home": "Home",
+    "basket": "Basket",
+    "settings": "Settings",
+    "product": "Product",
+    "checkout": "Checkout",
+    "orderPlaced": "Order placed"
+  },
+  "home": {
+    "searchPlaceholder": "Search products",
+    "recentSearchesHeading": "Recent searches",
+    "recentSearchesEmpty": "Your recent searches will show up here.",
+    "loadingProducts": "Loading products...",
+    "loadProductsErrorTitle": "Couldn't load products",
+    "noProductsFoundTitle": "No products found",
+    "noProductsFoundMessage": "Try a different search term.",
+    "sortRelevance": "Relevance",
+    "sortPriceAsc": "Price: Low to High",
+    "sortPriceDesc": "Price: High to Low",
+    "sortNewest": "Newest",
+    "sortPopular": "Popular"
+  },
+  "productDetail": {
+    "loadingProduct": "Loading product...",
+    "notFoundTitle": "Product not found",
+    "notFoundMessage": "This product may no longer be available.",
+    "loadErrorTitle": "Couldn't load product",
+    "quantityLabel": "Quantity",
+    "selectOptions": "Select options",
+    "addedToBasket": "Added to basket."
+  },
+  "basket": {
+    "emptyTitle": "Your basket is empty",
+    "emptyMessage": "Browse products and add something you like.",
+    "browseProducts": "Browse products",
+    "checkout": "Checkout",
+    "remove": "Remove",
+    "subtotal": "Subtotal",
+    "serviceAndMarkup": "Service & markup",
+    "total": "Total"
+  },
+  "checkout": {
+    "deliveryDetailsHeading": "Delivery details",
+    "orderSummaryHeading": "Order summary",
+    "quantityPrefix": "Qty",
+    "fullNameLabel": "Full name",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone",
+    "shippingAddressLabel": "Shipping address",
+    "cityLabel": "City",
+    "postcodeLabel": "Postcode",
+    "countryLabel": "Country",
+    "placingOrder": "Placing order...",
+    "placeOrder": "Place order",
+    "validation": {
+      "fullNameRequired": "Full name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Enter a valid email address",
+      "phoneRequired": "Phone number is required",
+      "shippingAddressRequired": "Shipping address is required",
+      "cityRequired": "City is required",
+      "postcodeRequired": "Postcode is required",
+      "countryRequired": "Country is required"
+    }
+  },
+  "checkoutSuccess": {
+    "title": "Order placed",
+    "message": "Thank you for your order. We've received it and will be in touch with payment and shipping details.",
+    "referenceLabel": "Order reference",
+    "continueShopping": "Continue shopping"
+  },
+  "settings": {
+    "currencyLabel": "Currency",
+    "currencyValue": "USD",
+    "languageLabel": "Language",
+    "languageValue": "English",
+    "contactSupportLabel": "Contact support",
+    "savedDeliveryDetailsLabel": "Saved delivery details",
+    "savedDeliveryDetailsValue": "Coming soon",
+    "clearRecentSearchesLabel": "Clear recent searches",
+    "clearRecentSearchesConfirmation": "Recent searches cleared.",
+    "termsLabel": "Terms & privacy",
+    "appVersionLabel": "App version"
+  }
+}

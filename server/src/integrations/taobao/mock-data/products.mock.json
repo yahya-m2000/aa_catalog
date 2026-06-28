@@ -1,0 +1,511 @@
+[
+  {
+    "id": "mock-1001",
+    "title": "Men's UPF50+ Ice Silk Sun Protection Jacket Breathable Anti-UV Summer Outdoor Fishing Coat",
+    "description": "Lightweight ice-silk fabric with UPF50+ sun protection rating. Breathable mesh lining, large brim hood, side pockets with zip closure. Suitable for fishing, hiking, and daily outdoor wear.",
+    "shortDescription": "UPF50+ breathable sun protection jacket",
+    "category": "Men's Clothing > Outdoor Apparel",
+    "sellerName": "Outdoor Gear Co.",
+    "images": [
+      { "url": "https://picsum.photos/seed/mock-1001-a/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/seed/mock-1001-b/800/800", "isPrimary": false },
+      { "url": "https://picsum.photos/seed/mock-1001-c/800/800", "isPrimary": false }
+    ],
+    "price": { "amount": 89, "currency": "CNY", "usdAmount": 89, "finalAmount": 89 },
+    "skus": [
+      {
+        "skuId": "mock-1001-sku-1",
+        "options": [{ "name": "Color", "value": "White" }, { "name": "Size", "value": "M" }],
+        "price": { "amount": 89, "currency": "CNY", "usdAmount": 89, "finalAmount": 89 },
+        "inventory": 42,
+        "imageUrl": "https://picsum.photos/seed/mock-1001-a/800/800"
+      },
+      {
+        "skuId": "mock-1001-sku-2",
+        "options": [{ "name": "Color", "value": "White" }, { "name": "Size", "value": "L" }],
+        "price": { "amount": 89, "currency": "CNY", "usdAmount": 89, "finalAmount": 89 },
+        "inventory": 31,
+        "imageUrl": "https://picsum.photos/seed/mock-1001-a/800/800"
+      },
+      {
+        "skuId": "mock-1001-sku-3",
+        "options": [{ "name": "Color", "value": "Navy" }, { "name": "Size", "value": "M" }],
+        "price": { "amount": 95, "currency": "CNY", "usdAmount": 95, "finalAmount": 95 },
+        "inventory": 0,
+        "imageUrl": "https://picsum.photos/seed/mock-1001-b/800/800"
+      },
+      {
+        "skuId": "mock-1001-sku-4",
+        "options": [{ "name": "Color", "value": "Navy" }, { "name": "Size", "value": "L" }],
+        "price": { "amount": 95, "currency": "CNY", "usdAmount": 95, "finalAmount": 95 },
+        "inventory": 18,
+        "imageUrl": "https://picsum.photos/seed/mock-1001-b/800/800"
+      }
+    ],
+    "sourcePlatform": "mock"
+  },
+  {
+    "id": "mock-1002",
+    "title": "Women's Ruffle Collar Long Sleeve Blouse Slim Fit Autumn Office Shirt",
+    "description": "Soft polyester-cotton blend with a flattering slim cut. Ruffle collar detail, button-front closure, suitable for office or casual wear. Machine washable.",
+    "shortDescription": "Slim fit ruffle collar blouse",
+    "category": "Women's Clothing > Shirts",
+    "sellerName": "Tammy's Boutique",
+    "images": [
+      { "url": "https://picsum.photos/seed/mock-1002-a/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/seed/mock-1002-b/800/800", "isPrimary": false }
+    ],
+    "price": { "amount": 279, "currency": "CNY", "usdAmount": 279, "finalAmount": 279 },
+    "skus": [
+      {
+        "skuId": "mock-1002-sku-1",
+        "options": [{ "name": "Color", "value": "Pearl White" }, { "name": "Size", "value": "S" }],
+        "price": { "amount": 279, "currency": "CNY", "usdAmount": 279, "finalAmount": 279 },
+        "inventory": 12,
+        "imageUrl": "https://picsum.photos/seed/mock-1002-a/800/800"
+      },
+      {
+        "skuId": "mock-1002-sku-2",
+        "options": [{ "name": "Color", "value": "Pearl White" }, { "name": "Size", "value": "M" }],
+        "price": { "amount": 279, "currency": "CNY", "usdAmount": 279, "finalAmount": 279 },
+        "inventory": 9,
+        "imageUrl": "https://picsum.photos/seed/mock-1002-a/800/800"
+      },
+      {
+        "skuId": "mock-1002-sku-3",
+        "options": [{ "name": "Color", "value": "Black" }, { "name": "Size", "value": "S" }],
+        "price": { "amount": 279, "currency": "CNY", "usdAmount": 279, "finalAmount": 279 },
+        "inventory": 5,
+        "imageUrl": "https://picsum.photos/seed/mock-1002-b/800/800"
+      }
+    ],
+    "sourcePlatform": "mock"
+  },
+  {
+    "id": "mock-1003",
+    "title": "Tempered Glass Screen Protector for Mirrorless Cameras Anti-Scratch HD Clear Film",
+    "description": "9H hardness tempered glass, anti-fingerprint coating, bubble-free adhesive. Compatible with multiple mirrorless camera LCD screen sizes — check model compatibility before ordering.",
+    "shortDescription": "9H tempered glass camera screen protector",
+    "category": "Electronics > Camera Accessories",
+    "sellerName": "Oushang Digital Photography Accessories",
+    "images": [
+      { "url": "https://picsum.photos/seed/mock-1003-a/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/seed/mock-1003-b/800/800", "isPrimary": false }
+    ],
+    "price": { "amount": 12.8, "currency": "CNY", "usdAmount": 12.8, "finalAmount": 12.8 },
+    "skus": [
+      {
+        "skuId": "mock-1003-sku-1",
+        "options": [{ "name": "Model", "value": "X-T4 / X-T3" }],
+        "price": { "amount": 12.8, "currency": "CNY", "usdAmount": 12.8, "finalAmount": 12.8 },
+        "inventory": 7740,
+        "imageUrl": "https://picsum.photos/seed/mock-1003-a/800/800"
+      },
+      {
+        "skuId": "mock-1003-sku-2",
+        "options": [{ "name": "Model", "value": "X-S10" }],
+        "price": { "amount": 12.8, "currency": "CNY", "usdAmount": 12.8, "finalAmount": 12.8 },
+        "inventory": 3120,
+        "imageUrl": "https://picsum.photos/seed/mock-1003-b/800/800"
+      }
+    ],
+    "sourcePlatform": "mock"
+  },
+  {
+    "id": "mock-1004",
+    "title": "Ceramic Pour-Over Coffee Dripper Set with Wooden Stand and Glass Carafe 600ml",
+    "description": "Hand-glazed ceramic dripper, kiln-dried wood stand, heat-resistant borosilicate glass carafe. Includes 40 cone filter papers. Gift-box packaging.",
+    "shortDescription": "Ceramic pour-over coffee set, 600ml",
+    "category": "Home & Kitchen > Coffee & Tea",
+    "sellerName": "Hangzhou Home Living",
+    "images": [
+      { "url": "https://picsum.photos/seed/mock-1004-a/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/seed/mock-1004-b/800/800", "isPrimary": false },
+      { "url": "https://picsum.photos/seed/mock-1004-c/800/800", "isPrimary": false }
+    ],
+    "price": { "amount": 158, "currency": "CNY", "usdAmount": 158, "finalAmount": 158 },
+    "skus": [
+      {
+        "skuId": "mock-1004-sku-1",
+        "options": [{ "name": "Color", "value": "Sand White" }],
+        "price": { "amount": 158, "currency": "CNY", "usdAmount": 158, "finalAmount": 158 },
+        "inventory": 64,
+        "imageUrl": "https://picsum.photos/seed/mock-1004-a/800/800"
+      },
+      {
+        "skuId": "mock-1004-sku-2",
+        "options": [{ "name": "Color", "value": "Charcoal" }],
+        "price": { "amount": 168, "currency": "CNY", "usdAmount": 168, "finalAmount": 168 },
+        "inventory": 21,
+        "imageUrl": "https://picsum.photos/seed/mock-1004-b/800/800"
+      }
+    ],
+    "sourcePlatform": "mock"
+  },
+  {
+    "id": "mock-1005",
+    "title": "Mechanical Keyboard Wrist Rest Memory Foam Ergonomic Pad Anti-Slip Base",
+    "description": "High-density memory foam contours to wrist shape, reducing strain during long typing sessions. Anti-slip rubber base keeps the pad in place on any desk surface.",
+    "shortDescription": "Ergonomic memory foam wrist rest",
+    "category": "Electronics > Keyboard Accessories",
+    "sellerName": "DeskTech Supplies",
+    "images": [
+      { "url": "https://picsum.photos/seed/mock-1005-a/800/800", "isPrimary": true }
+    ],
+    "price": { "amount": 34.5, "currency": "CNY", "usdAmount": 34.5, "finalAmount": 34.5 },
+    "skus": [],
+    "sourcePlatform": "mock"
+  },
+  {
+    "id": "mock-1006",
+    "title": "Stainless Steel Insulated Water Bottle 500ml Leak-Proof Sports Flask",
+    "description": "Double-wall vacuum insulation keeps drinks cold for 24 hours or hot for 12 hours. Leak-proof flip lid, powder-coated exterior resists scratches.",
+    "shortDescription": "500ml double-wall insulated bottle",
+    "category": "Sports & Outdoors > Drinkware",
+    "sellerName": "ActiveLife Goods",
+    "images": [
+      { "url": "https://picsum.photos/seed/mock-1006-a/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/seed/mock-1006-b/800/800", "isPrimary": false }
+    ],
+    "price": { "amount": 45, "currency": "CNY", "usdAmount": 45, "finalAmount": 45 },
+    "skus": [
+      {
+        "skuId": "mock-1006-sku-1",
+        "options": [{ "name": "Color", "value": "Matte Black" }],
+        "price": { "amount": 45, "currency": "CNY", "usdAmount": 45, "finalAmount": 45 },
+        "inventory": 150,
+        "imageUrl": "https://picsum.photos/seed/mock-1006-a/800/800"
+      },
+      {
+        "skuId": "mock-1006-sku-2",
+        "options": [{ "name": "Color", "value": "Sky Blue" }],
+        "price": { "amount": 45, "currency": "CNY", "usdAmount": 45, "finalAmount": 45 },
+        "inventory": 88,
+        "imageUrl": "https://picsum.photos/seed/mock-1006-b/800/800"
+      },
+      {
+        "skuId": "mock-1006-sku-3",
+        "options": [{ "name": "Color", "value": "Blush Pink" }],
+        "price": { "amount": 45, "currency": "CNY", "usdAmount": 45, "finalAmount": 45 },
+        "inventory": 0,
+        "imageUrl": "https://picsum.photos/seed/mock-1006-b/800/800"
+      }
+    ],
+    "sourcePlatform": "mock"
+  },
+  {
+    "id": "mock-1007",
+    "title": "Wireless Earbuds Charging Case Silicone Protective Cover with Carabiner Clip",
+    "description": "Shockproof silicone case fits most true wireless earbud charging cases. Includes a metal carabiner clip for attaching to bags or belt loops.",
+    "shortDescription": "Silicone earbuds case cover with clip",
+    "category": "Electronics > Audio Accessories",
+    "sellerName": "GadgetGuard Store",
+    "images": [
+      { "url": "https://picsum.photos/seed/mock-1007-a/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/seed/mock-1007-b/800/800", "isPrimary": false }
+    ],
+    "price": { "amount": 9.9, "currency": "CNY", "usdAmount": 9.9, "finalAmount": 9.9 },
+    "skus": [
+      {
+        "skuId": "mock-1007-sku-1",
+        "options": [{ "name": "Color", "value": "Clear" }],
+        "price": { "amount": 9.9, "currency": "CNY", "usdAmount": 9.9, "finalAmount": 9.9 },
+        "inventory": 999,
+        "imageUrl": "https://picsum.photos/seed/mock-1007-a/800/800"
+      },
+      {
+        "skuId": "mock-1007-sku-2",
+        "options": [{ "name": "Color", "value": "Black" }],
+        "price": { "amount": 9.9, "currency": "CNY", "usdAmount": 9.9, "finalAmount": 9.9 },
+        "inventory": 412,
+        "imageUrl": "https://picsum.photos/seed/mock-1007-b/800/800"
+      }
+    ],
+    "sourcePlatform": "mock"
+  },
+  {
+    "id": "mock-1008",
+    "title": "Knit Wool Blend Cardigan Sweater Oversized Casual Autumn Winter",
+    "description": "Chunky knit cardigan with a relaxed oversized fit. Wool-acrylic blend for warmth without bulk. Two front pockets, button closure.",
+    "shortDescription": "Oversized knit wool blend cardigan",
+    "category": "Women's Clothing > Sweaters",
+    "sellerName": "Tammy's Boutique",
+    "images": [
+      { "url": "https://picsum.photos/seed/mock-1008-a/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/seed/mock-1008-b/800/800", "isPrimary": false },
+      { "url": "https://picsum.photos/seed/mock-1008-c/800/800", "isPrimary": false }
+    ],
+    "price": { "amount": 199, "currency": "CNY", "usdAmount": 199, "finalAmount": 199 },
+    "skus": [
+      {
+        "skuId": "mock-1008-sku-1",
+        "options": [{ "name": "Color", "value": "Oatmeal" }, { "name": "Size", "value": "Free Size" }],
+        "price": { "amount": 199, "currency": "CNY", "usdAmount": 199, "finalAmount": 199 },
+        "inventory": 36,
+        "imageUrl": "https://picsum.photos/seed/mock-1008-a/800/800"
+      },
+      {
+        "skuId": "mock-1008-sku-2",
+        "options": [{ "name": "Color", "value": "Dark Grey" }, { "name": "Size", "value": "Free Size" }],
+        "price": { "amount": 199, "currency": "CNY", "usdAmount": 199, "finalAmount": 199 },
+        "inventory": 14,
+        "imageUrl": "https://picsum.photos/seed/mock-1008-b/800/800"
+      }
+    ],
+    "sourcePlatform": "mock"
+  },
+  {
+    "id": "mock-1009",
+    "title": "Adjustable Aluminum Laptop Stand Foldable Portable Ventilated Riser",
+    "description": "Aircraft-grade aluminum construction with 6 adjustable height settings. Ventilated design improves airflow and reduces laptop overheating. Folds flat for travel.",
+    "shortDescription": "Foldable aluminum laptop stand",
+    "category": "Electronics > Laptop Accessories",
+    "sellerName": "DeskTech Supplies",
+    "images": [
+      { "url": "https://picsum.photos/seed/mock-1009-a/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/seed/mock-1009-b/800/800", "isPrimary": false }
+    ],
+    "price": { "amount": 79, "currency": "CNY", "usdAmount": 79, "finalAmount": 79 },
+    "skus": [
+      {
+        "skuId": "mock-1009-sku-1",
+        "options": [{ "name": "Color", "value": "Silver" }],
+        "price": { "amount": 79, "currency": "CNY", "usdAmount": 79, "finalAmount": 79 },
+        "inventory": 53,
+        "imageUrl": "https://picsum.photos/seed/mock-1009-a/800/800"
+      },
+      {
+        "skuId": "mock-1009-sku-2",
+        "options": [{ "name": "Color", "value": "Space Grey" }],
+        "price": { "amount": 79, "currency": "CNY", "usdAmount": 79, "finalAmount": 79 },
+        "inventory": 27,
+        "imageUrl": "https://picsum.photos/seed/mock-1009-b/800/800"
+      }
+    ],
+    "sourcePlatform": "mock"
+  },
+  {
+    "id": "mock-1010",
+    "title": "Floral Print Midi Dress A-Line Short Sleeve Summer Casual Sundress",
+    "description": "Breathable rayon fabric with an all-over floral print. A-line silhouette flatters most body types. Side pockets, hidden back zip.",
+    "shortDescription": "Floral A-line midi sundress",
+    "category": "Women's Clothing > Dresses",
+    "sellerName": "Tammy's Boutique",
+    "images": [
+      { "url": "https://picsum.photos/seed/mock-1010-a/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/seed/mock-1010-b/800/800", "isPrimary": false }
+    ],
+    "price": { "amount": 1, "currency": "USD", "usdAmount": 1, "finalAmount": 1 },
+    "skus": [
+      {
+        "skuId": "mock-1010-sku-1",
+        "options": [{ "name": "Color", "value": "Light Gray" }, { "name": "Size", "value": "S" }],
+        "price": { "amount": 1, "currency": "USD", "usdAmount": 1, "finalAmount": 1 },
+        "inventory": 99999,
+        "imageUrl": "https://picsum.photos/seed/mock-1010-a/800/800"
+      },
+      {
+        "skuId": "mock-1010-sku-2",
+        "options": [{ "name": "Color", "value": "00 White" }, { "name": "Size", "value": "M" }],
+        "price": { "amount": 1, "currency": "USD", "usdAmount": 1, "finalAmount": 1 },
+        "inventory": 45943,
+        "imageUrl": "https://picsum.photos/seed/mock-1010-b/800/800"
+      }
+    ],
+    "sourcePlatform": "mock"
+  },
+  {
+    "id": "mock-1011",
+    "title": "Silicone Phone Case Shockproof Cover with Card Holder Slot",
+    "description": "Soft-touch liquid silicone exterior with microfiber lining to protect against scratches. Built-in card slot holds up to 2 cards. Raised edges protect camera lens.",
+    "shortDescription": "Silicone phone case with card slot",
+    "category": "Electronics > Phone Accessories",
+    "sellerName": "GadgetGuard Store",
+    "images": [
+      { "url": "https://picsum.photos/seed/mock-1011-a/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/seed/mock-1011-b/800/800", "isPrimary": false },
+      { "url": "https://picsum.photos/seed/mock-1011-c/800/800", "isPrimary": false }
+    ],
+    "price": { "amount": 24, "currency": "CNY", "usdAmount": 24, "finalAmount": 24 },
+    "skus": [
+      {
+        "skuId": "mock-1011-sku-1",
+        "options": [{ "name": "Color", "value": "Lavender" }],
+        "price": { "amount": 24, "currency": "CNY", "usdAmount": 24, "finalAmount": 24 },
+        "inventory": 210,
+        "imageUrl": "https://picsum.photos/seed/mock-1011-a/800/800"
+      },
+      {
+        "skuId": "mock-1011-sku-2",
+        "options": [{ "name": "Color", "value": "Sage Green" }],
+        "price": { "amount": 24, "currency": "CNY", "usdAmount": 24, "finalAmount": 24 },
+        "inventory": 175,
+        "imageUrl": "https://picsum.photos/seed/mock-1011-b/800/800"
+      },
+      {
+        "skuId": "mock-1011-sku-3",
+        "options": [{ "name": "Color", "value": "Black" }],
+        "price": { "amount": 24, "currency": "CNY", "usdAmount": 24, "finalAmount": 24 },
+        "inventory": 320,
+        "imageUrl": "https://picsum.photos/seed/mock-1011-c/800/800"
+      }
+    ],
+    "sourcePlatform": "mock"
+  },
+  {
+    "id": "mock-1012",
+    "title": "Bamboo Bathroom Storage Shelf 3-Tier Freestanding Rack Over Toilet",
+    "description": "Natural bamboo construction, no assembly tools required. Three spacious tiers for towels, toiletries, and decor. Stable freestanding design fits over most toilets.",
+    "shortDescription": "3-tier bamboo bathroom storage shelf",
+    "category": "Home & Kitchen > Storage",
+    "sellerName": "Hangzhou Home Living",
+    "images": [
+      { "url": "https://picsum.photos/seed/mock-1012-a/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/seed/mock-1012-b/800/800", "isPrimary": false }
+    ],
+    "price": { "amount": 135, "currency": "CNY", "usdAmount": 135, "finalAmount": 135 },
+    "skus": [],
+    "sourcePlatform": "mock"
+  },
+  {
+    "id": "mock-1013",
+    "title": "Running Shoes Men's Lightweight Breathable Mesh Sneakers Non-Slip Sole",
+    "description": "Engineered mesh upper for breathability, EVA midsole for cushioned impact absorption, rubber outsole with multi-directional traction pattern. Suitable for running and daily wear.",
+    "shortDescription": "Lightweight breathable running shoes",
+    "category": "Men's Shoes > Athletic",
+    "sellerName": "Outdoor Gear Co.",
+    "images": [
+      { "url": "https://picsum.photos/seed/mock-1013-a/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/seed/mock-1013-b/800/800", "isPrimary": false },
+      { "url": "https://picsum.photos/seed/mock-1013-c/800/800", "isPrimary": false }
+    ],
+    "price": { "amount": 159, "currency": "CNY", "usdAmount": 159, "finalAmount": 159 },
+    "skus": [
+      {
+        "skuId": "mock-1013-sku-1",
+        "options": [{ "name": "Color", "value": "Black/White" }, { "name": "Size", "value": "42" }],
+        "price": { "amount": 159, "currency": "CNY", "usdAmount": 159, "finalAmount": 159 },
+        "inventory": 24,
+        "imageUrl": "https://picsum.photos/seed/mock-1013-a/800/800"
+      },
+      {
+        "skuId": "mock-1013-sku-2",
+        "options": [{ "name": "Color", "value": "Black/White" }, { "name": "Size", "value": "43" }],
+        "price": { "amount": 159, "currency": "CNY", "usdAmount": 159, "finalAmount": 159 },
+        "inventory": 19,
+        "imageUrl": "https://picsum.photos/seed/mock-1013-a/800/800"
+      },
+      {
+        "skuId": "mock-1013-sku-3",
+        "options": [{ "name": "Color", "value": "Grey/Orange" }, { "name": "Size", "value": "42" }],
+        "price": { "amount": 159, "currency": "CNY", "usdAmount": 159, "finalAmount": 159 },
+        "inventory": 8,
+        "imageUrl": "https://picsum.photos/seed/mock-1013-b/800/800"
+      },
+      {
+        "skuId": "mock-1013-sku-4",
+        "options": [{ "name": "Color", "value": "Grey/Orange" }, { "name": "Size", "value": "44" }],
+        "price": { "amount": 165, "currency": "CNY", "usdAmount": 165, "finalAmount": 165 },
+        "inventory": 0,
+        "imageUrl": "https://picsum.photos/seed/mock-1013-b/800/800"
+      }
+    ],
+    "sourcePlatform": "mock"
+  },
+  {
+    "id": "mock-1014",
+    "title": "Desk Organizer Pen Holder Mesh Metal Multi-Compartment Office Storage",
+    "description": "Durable mesh metal construction with 5 compartments for pens, scissors, sticky notes, and small office supplies. Compact footprint suits any desk size.",
+    "shortDescription": "5-compartment mesh metal desk organizer",
+    "category": "Office Supplies > Desk Accessories",
+    "sellerName": "DeskTech Supplies",
+    "images": [
+      { "url": "https://picsum.photos/seed/mock-1014-a/800/800", "isPrimary": true }
+    ],
+    "price": { "amount": 28, "currency": "CNY", "usdAmount": 28, "finalAmount": 28 },
+    "skus": [
+      {
+        "skuId": "mock-1014-sku-1",
+        "options": [{ "name": "Color", "value": "Black" }],
+        "price": { "amount": 28, "currency": "CNY", "usdAmount": 28, "finalAmount": 28 },
+        "inventory": 140,
+        "imageUrl": "https://picsum.photos/seed/mock-1014-a/800/800"
+      },
+      {
+        "skuId": "mock-1014-sku-2",
+        "options": [{ "name": "Color", "value": "Rose Gold" }],
+        "price": { "amount": 32, "currency": "CNY", "usdAmount": 32, "finalAmount": 32 },
+        "inventory": 76,
+        "imageUrl": "https://picsum.photos/seed/mock-1014-a/800/800"
+      }
+    ],
+    "sourcePlatform": "mock"
+  },
+  {
+    "id": "mock-1015",
+    "title": "Kids' Cartoon Print Cotton Pajama Set Long Sleeve Two-Piece Sleepwear",
+    "description": "100% combed cotton for softness against sensitive skin. Playful cartoon prints, elastic waistband for comfort, machine washable and colorfast.",
+    "shortDescription": "Cotton cartoon print pajama set",
+    "category": "Kids' Clothing > Sleepwear",
+    "sellerName": "Tammy's Boutique",
+    "images": [
+      { "url": "https://picsum.photos/seed/mock-1015-a/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/seed/mock-1015-b/800/800", "isPrimary": false }
+    ],
+    "price": { "amount": 69, "currency": "CNY", "usdAmount": 69, "finalAmount": 69 },
+    "skus": [
+      {
+        "skuId": "mock-1015-sku-1",
+        "options": [{ "name": "Print", "value": "Dinosaur" }, { "name": "Size", "value": "110cm" }],
+        "price": { "amount": 69, "currency": "CNY", "usdAmount": 69, "finalAmount": 69 },
+        "inventory": 33,
+        "imageUrl": "https://picsum.photos/seed/mock-1015-a/800/800"
+      },
+      {
+        "skuId": "mock-1015-sku-2",
+        "options": [{ "name": "Print", "value": "Dinosaur" }, { "name": "Size", "value": "120cm" }],
+        "price": { "amount": 69, "currency": "CNY", "usdAmount": 69, "finalAmount": 69 },
+        "inventory": 28,
+        "imageUrl": "https://picsum.photos/seed/mock-1015-a/800/800"
+      },
+      {
+        "skuId": "mock-1015-sku-3",
+        "options": [{ "name": "Print", "value": "Rocket" }, { "name": "Size", "value": "110cm" }],
+        "price": { "amount": 69, "currency": "CNY", "usdAmount": 69, "finalAmount": 69 },
+        "inventory": 17,
+        "imageUrl": "https://picsum.photos/seed/mock-1015-b/800/800"
+      }
+    ],
+    "sourcePlatform": "mock"
+  },
+  {
+    "id": "mock-1016",
+    "title": "Portable Mini Air Humidifier USB Desktop Cool Mist 280ml with LED Light",
+    "description": "Compact 280ml tank runs up to 8 hours per fill. Whisper-quiet ultrasonic operation, soft ambient LED light, USB-powered for use with any laptop or power bank.",
+    "shortDescription": "USB mini humidifier with LED light",
+    "category": "Home & Kitchen > Air Care",
+    "sellerName": "Hangzhou Home Living",
+    "images": [
+      { "url": "https://picsum.photos/seed/mock-1016-a/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/seed/mock-1016-b/800/800", "isPrimary": false }
+    ],
+    "price": { "amount": 39.9, "currency": "CNY", "usdAmount": 39.9, "finalAmount": 39.9 },
+    "skus": [
+      {
+        "skuId": "mock-1016-sku-1",
+        "options": [{ "name": "Color", "value": "White" }],
+        "price": { "amount": 39.9, "currency": "CNY", "usdAmount": 39.9, "finalAmount": 39.9 },
+        "inventory": 205,
+        "imageUrl": "https://picsum.photos/seed/mock-1016-a/800/800"
+      },
+      {
+        "skuId": "mock-1016-sku-2",
+        "options": [{ "name": "Color", "value": "Mint Green" }],
+        "price": { "amount": 39.9, "currency": "CNY", "usdAmount": 39.9, "finalAmount": 39.9 },
+        "inventory": 112,
+        "imageUrl": "https://picsum.photos/seed/mock-1016-b/800/800"
+      }
+    ],
+    "sourcePlatform": "mock"
+  }
+]

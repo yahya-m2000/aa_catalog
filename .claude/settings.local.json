@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(npx --yes create-expo-app@latest app --template default@sdk-51)",
+      "Bash(rm -rf app)",
+      "Bash(npx --yes create-expo-app@latest app)"
+    ]
+  }
+}
