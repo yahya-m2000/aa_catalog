@@ -8,9 +8,12 @@
     "scheme": "app",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "com.aatradesolutions.aacatalog"
     },
     "android": {
+      "package": "com.aatradesolutions.aacatalog",
+      "versionCode": 1,
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -39,6 +42,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": false
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "bd491ad0-0964-4f29-ba28-43022b549913"
+      }
+    },
+    "owner": "y-m2000"
   }
 }
