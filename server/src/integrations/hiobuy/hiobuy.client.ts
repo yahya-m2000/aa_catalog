@@ -1,4 +1,5 @@
 import { env } from '../../config/env';
+import { logHiobuyQuota, recordHiobuyCall } from '../../utils/logger';
 import type { HiobuyErrorEnvelope, HiobuyQuotaHeaders } from './hiobuy.types';
 
 const BASE_URL = 'https://api.hiobuy.com';
@@ -42,6 +43,8 @@ function captureQuotaHeaders(headers: Headers): void {
     quotaPackRemaining: headers.get('x-quota-pack-remaining') ?? undefined,
     requestId: headers.get('x-request-id') ?? undefined,
   };
+  // Quota headers only — no auth/key material, no request/response bodies (plan §12).
+  logHiobuyQuota(lastQuota);
 }
 
 function sleep(ms: number): Promise<void> {
@@ -77,6 +80,7 @@ export async function hiobuyPost<TResponse>(path: string, body: unknown): Promis
         attempt += 1;
         continue;
       }
+      recordHiobuyCall(path, false);
       throw new HiobuyRequestError(
         error instanceof Error ? error.message : 'Network error calling HIOBuy',
         0,
@@ -86,6 +90,7 @@ export async function hiobuyPost<TResponse>(path: string, body: unknown): Promis
     captureQuotaHeaders(response.headers);
 
     if (response.ok) {
+      recordHiobuyCall(path, true);
       return (await response.json()) as TResponse;
     }
 
@@ -94,6 +99,8 @@ export async function hiobuyPost<TResponse>(path: string, body: unknown): Promis
       attempt += 1;
       continue;
     }
+
+    recordHiobuyCall(path, false);
 
     let envelope: HiobuyErrorEnvelope | null = null;
     try {

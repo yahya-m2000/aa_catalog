@@ -11,6 +11,7 @@ import type { BasketTotals } from '../types/basket';
 import type { Order, OrderLineItem } from '../types/order';
 import { applyPricingToProduct } from '../utils/applyPricingToProduct';
 import { getDeliveryFeeUsd } from '../utils/deliveryZone';
+import { logEmailDelivery } from '../utils/logger';
 import { generateOrderReference } from '../utils/orderReference';
 import { assessPriceChange, calculateBasketTotals, roundToPrecision } from './pricing.service';
 
@@ -218,8 +219,12 @@ async function deliverOrderEmails(order: Order, item: GraphListItem): Promise<vo
     await sendOrderEmails(order);
     etag = await recordEmailStatus(item.id, etag, 'CustomerEmailStatus', 'Sent');
     await recordEmailStatus(item.id, etag, 'InternalEmailStatus', 'Sent');
+    logEmailDelivery(order.reference, 'customer', 'sent');
+    logEmailDelivery(order.reference, 'internal', 'sent');
   } catch (error) {
+    // Order reference only — never the recipient address, subject, or email body (plan §12).
     console.error(`[order.service] Email delivery failed for order ${order.reference}:`, error);
+    logEmailDelivery(order.reference, 'customer', 'failed');
     try {
       await recordEmailStatus(item.id, etag, 'CustomerEmailStatus', 'Failed');
     } catch (statusError) {

@@ -1,3 +1,5 @@
+import { recordCacheOutcome } from './logger';
+
 export type CacheEntryState = 'fresh' | 'stale' | 'miss';
 
 interface CacheEntry<T> {
@@ -9,6 +11,8 @@ export interface SwrCacheOptions {
   freshMs: number;
   staleMs: number;
   maxEntries?: number;
+  /** Name used for hit-rate logging (e.g. "search", "detail", "home"). Optional — caches without a name are simply not tracked. */
+  name?: string;
 }
 
 /**
@@ -22,11 +26,13 @@ export class SwrCache<T> {
   private readonly freshMs: number;
   private readonly staleMs: number;
   private readonly maxEntries: number;
+  private readonly name?: string;
 
   constructor(options: SwrCacheOptions) {
     this.freshMs = options.freshMs;
     this.staleMs = options.staleMs;
     this.maxEntries = options.maxEntries ?? 500;
+    this.name = options.name;
   }
 
   private stateOf(entry: CacheEntry<T> | undefined): CacheEntryState {
@@ -59,6 +65,9 @@ export class SwrCache<T> {
    * On fetch failure with a stale entry available, falls back to the stale value.
    */
   async getOrFetch(key: string, fetcher: () => Promise<T>): Promise<T> {
+    const entryState = this.stateOf(this.store.get(key));
+    if (this.name) recordCacheOutcome(this.name, entryState);
+
     const cached = this.get(key);
     if (cached?.state === 'fresh') return cached.value;
 

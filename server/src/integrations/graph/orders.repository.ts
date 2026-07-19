@@ -1,4 +1,5 @@
 import { env } from '../../config/env';
+import { recordGraphCall } from '../../utils/logger';
 import { GraphConflictError, GraphRequestError, getGraphClient } from './graph.client';
 import type {
   CreateOrderItemInput,
@@ -44,8 +45,10 @@ export async function createOrderItem(input: CreateOrderItemInput): Promise<Grap
   try {
     const client = getGraphClient();
     const created = await client.api(`${listBase()}/items`).post({ fields });
+    recordGraphCall('createOrderItem', true);
     return created as GraphListItem;
   } catch (error) {
+    recordGraphCall('createOrderItem', false);
     throw new GraphRequestError('Failed to create order in SharePoint', undefined, error);
   }
 }
@@ -66,8 +69,10 @@ export async function getOrderItemByReference(reference: string): Promise<GraphL
       .get();
 
     const items = (result.value ?? []) as GraphListItem[];
+    recordGraphCall('getOrderItemByReference', true);
     return items[0] ?? null;
   } catch (error) {
+    recordGraphCall('getOrderItemByReference', false);
     throw new GraphRequestError('Failed to look up order in SharePoint', undefined, error);
   }
 }
@@ -108,8 +113,10 @@ export async function updateOrderItemFields(
       .api(`${listBase()}/items/${itemId}/fields`)
       .header('If-Match', etag)
       .patch(patchFields);
+    recordGraphCall('updateOrderItemFields', true);
     return (updated?.['@odata.etag'] as string | undefined) ?? etag;
   } catch (error) {
+    recordGraphCall('updateOrderItemFields', false);
     const statusCode = (error as { statusCode?: number })?.statusCode;
     if (statusCode === 412) {
       throw new GraphConflictError(

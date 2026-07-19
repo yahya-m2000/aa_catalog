@@ -28,11 +28,13 @@ export class CachedProductAdapter implements ProductSourceAdapter {
   private readonly searchCache = new SwrCache<PaginatedResult<NormalizedProduct>>({
     freshMs: cacheConfig.search.freshMs,
     staleMs: cacheConfig.search.staleMs,
+    name: 'search',
   });
 
   private readonly detailCache = new SwrCache<NormalizedProduct | null>({
     freshMs: cacheConfig.detail.freshMs,
     staleMs: cacheConfig.detail.staleMs,
+    name: 'detail',
   });
 
   constructor(private readonly inner: ProductSourceAdapter) {}

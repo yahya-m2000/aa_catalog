@@ -26,11 +26,13 @@ export class HiobuyHomeProvider implements HomeCollectionsProvider {
   private readonly dimensionsCache = new SwrCache<HomeCollection[]>({
     freshMs: cacheConfig.home.freshMs,
     staleMs: cacheConfig.home.staleMs,
+    name: 'home',
   });
 
   private readonly similarCache = new SwrCache<NormalizedProduct[]>({
     freshMs: cacheConfig.home.freshMs,
     staleMs: cacheConfig.home.staleMs,
+    name: 'home-similar',
   });
 
   private async fetchThemeItems(dimension: string, label: string): Promise<HomeCollection> {
