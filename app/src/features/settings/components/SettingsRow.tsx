@@ -1,6 +1,7 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 
-import { colors, spacing, typography } from '@/theme';
+import { Text } from '@/components/Text';
+import { colors, spacing } from '@/theme';
 
 interface SettingsRowProps {
   label: string;
@@ -13,8 +14,14 @@ export function SettingsRow({ label, value, onPress }: SettingsRowProps) {
 
   return (
     <Container style={styles.row} onPress={onPress}>
-      <Text style={styles.label}>{label}</Text>
-      {value ? <Text style={styles.value}>{value}</Text> : null}
+      <Text variant="body" color={onPress ? colors.accent : colors.textPrimary}>
+        {label}
+      </Text>
+      {value ? (
+        <Text variant="body" color={colors.textMuted}>
+          {value}
+        </Text>
+      ) : null}
     </Container>
   );
 }
@@ -27,13 +34,5 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.lg,
     borderBottomWidth: 1,
     borderBottomColor: colors.border,
-  },
-  label: {
-    ...typography.body,
-    color: colors.textPrimary,
-  },
-  value: {
-    ...typography.body,
-    color: colors.textMuted,
   },
 });

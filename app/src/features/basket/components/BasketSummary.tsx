@@ -59,6 +59,6 @@ const styles = StyleSheet.create({
   },
   finalValue: {
     ...typography.price,
-    color: colors.purpleLight,
+    color: colors.textPrimary,
   },
 });

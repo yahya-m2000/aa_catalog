@@ -8,10 +8,12 @@ export const spacing = {
   xxxl: 48,
 } as const;
 
+// 8px is the standard card/input radius per the aagroup-web reference
+// (`--radius: 0.5rem`). Buttons always use `full` (fully rounded pill).
 export const radius = {
-  sm: 6,
-  md: 10,
-  lg: 16,
+  sm: 8,
+  md: 8,
+  lg: 8,
   full: 999,
 } as const;
 

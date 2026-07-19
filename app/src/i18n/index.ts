@@ -18,8 +18,13 @@ function getNestedValue(dictionary: unknown, path: string): string {
   return value;
 }
 
-export function t(key: string): string {
-  return getNestedValue(en, key);
+export function t(key: string, params?: Record<string, string | number>): string {
+  const value = getNestedValue(en, key);
+  if (!params) return value;
+  return Object.entries(params).reduce(
+    (result, [paramKey, paramValue]) => result.replace(`{${paramKey}}`, String(paramValue)),
+    value,
+  );
 }
 
 export type { TranslationDictionary };

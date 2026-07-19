@@ -1,14 +1,18 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 
+import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
+import { Text } from '@/components/Text';
 import { checkoutFormSchema, type CheckoutFormValues } from '@/features/checkout/schema/checkoutForm.schema';
 import { t } from '@/i18n';
-import { colors, radius, spacing, typography } from '@/theme';
+import type { PaymentMethod } from '@/services/api/orders.api';
+import { colors, radius, spacing } from '@/theme';
 
 interface CheckoutFormProps {
-  onSubmit: (values: CheckoutFormValues) => void;
+  onSubmit: (values: CheckoutFormValues, paymentMethod: PaymentMethod) => void;
   isSubmitting: boolean;
 }
 
@@ -19,7 +23,14 @@ interface FieldConfig {
   autoCapitalize?: 'none' | 'sentences';
 }
 
+const PAYMENT_METHODS: { value: PaymentMethod; labelKey: string }[] = [
+  { value: 'Cash', labelKey: 'checkout.paymentMethodCash' },
+  { value: 'Zaad', labelKey: 'checkout.paymentMethodZaad' },
+];
+
 export function CheckoutForm({ onSubmit, isSubmitting }: CheckoutFormProps) {
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('Cash');
+
   const FIELDS: FieldConfig[] = [
     { name: 'fullName', label: t('checkout.fullNameLabel') },
     { name: 'email', label: t('checkout.emailLabel'), keyboardType: 'email-address', autoCapitalize: 'none' },
@@ -65,15 +76,36 @@ export function CheckoutForm({ onSubmit, isSubmitting }: CheckoutFormProps) {
         />
       ))}
 
-      <Pressable
-        disabled={isSubmitting}
-        style={[styles.submitButton, isSubmitting && styles.submitButtonDisabled]}
-        onPress={handleSubmit(onSubmit)}
-      >
-        <Text style={styles.submitButtonLabel}>
-          {isSubmitting ? t('checkout.placingOrder') : t('checkout.placeOrder')}
+      <View style={styles.paymentSection}>
+        <Text variant="caption" color={colors.textSecondary}>
+          {t('checkout.paymentMethodHeading')}
         </Text>
-      </Pressable>
+        <View style={styles.paymentOptionsRow}>
+          {PAYMENT_METHODS.map((method) => {
+            const isSelected = paymentMethod === method.value;
+            return (
+              <Pressable
+                key={method.value}
+                disabled={isSubmitting}
+                style={[styles.paymentOption, isSelected && styles.paymentOptionSelected]}
+                onPress={() => setPaymentMethod(method.value)}
+              >
+                <Text variant="bodyStrong" color={isSelected ? colors.white : colors.textSecondary}>
+                  {t(method.labelKey)}
+                </Text>
+              </Pressable>
+            );
+          })}
+        </View>
+      </View>
+
+      <Button
+        label={isSubmitting ? t('checkout.placingOrder') : t('checkout.placeOrder')}
+        variant="secondary"
+        disabled={isSubmitting}
+        style={styles.submitButton}
+        onPress={handleSubmit((values) => onSubmit(values, paymentMethod))}
+      />
     </View>
   );
 }
@@ -82,18 +114,27 @@ const styles = StyleSheet.create({
   container: {
     gap: spacing.md,
   },
-  submitButton: {
-    backgroundColor: colors.purple,
-    borderRadius: radius.md,
+  paymentSection: {
+    gap: spacing.xs,
+  },
+  paymentOptionsRow: {
+    flexDirection: 'row',
+    gap: spacing.sm,
+  },
+  paymentOption: {
+    flex: 1,
     paddingVertical: spacing.md,
+    borderRadius: radius.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+    backgroundColor: colors.surface,
     alignItems: 'center',
+  },
+  paymentOptionSelected: {
+    backgroundColor: colors.textPrimary,
+    borderColor: colors.textPrimary,
+  },
+  submitButton: {
     marginTop: spacing.sm,
-  },
-  submitButtonDisabled: {
-    opacity: 0.5,
-  },
-  submitButtonLabel: {
-    ...typography.bodyStrong,
-    color: colors.white,
   },
 });

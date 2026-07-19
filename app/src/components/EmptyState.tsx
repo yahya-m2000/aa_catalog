@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import { colors, spacing, typography } from '@/theme';
+import { Text } from './Text';
+import { colors, spacing } from '@/theme';
 
 interface EmptyStateProps {
   title: string;
@@ -10,8 +11,14 @@ interface EmptyStateProps {
 export function EmptyState({ title, message }: EmptyStateProps) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
-      {message ? <Text style={styles.message}>{message}</Text> : null}
+      <Text variant="subheading" style={styles.title}>
+        {title}
+      </Text>
+      {message ? (
+        <Text variant="body" color={colors.textSecondary} style={styles.message}>
+          {message}
+        </Text>
+      ) : null}
     </View>
   );
 }
@@ -24,13 +31,9 @@ const styles = StyleSheet.create({
     padding: spacing.xl,
   },
   title: {
-    ...typography.subheading,
-    color: colors.textPrimary,
     textAlign: 'center',
   },
   message: {
-    ...typography.body,
-    color: colors.textSecondary,
     marginTop: spacing.sm,
     textAlign: 'center',
   },

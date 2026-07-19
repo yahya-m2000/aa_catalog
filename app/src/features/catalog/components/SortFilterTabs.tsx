@@ -65,8 +65,8 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
   },
   tabActive: {
-    backgroundColor: colors.purple,
-    borderColor: colors.purple,
+    backgroundColor: colors.textPrimary,
+    borderColor: colors.textPrimary,
   },
   label: {
     ...typography.caption,

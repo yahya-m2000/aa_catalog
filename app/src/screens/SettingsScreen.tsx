@@ -1,15 +1,18 @@
 import Constants from 'expo-constants';
+import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Linking, ScrollView, StyleSheet, Text } from 'react-native';
+import { Linking, ScrollView, StyleSheet } from 'react-native';
 
+import { Text } from '@/components/Text';
 import { useRecentSearchesStore } from '@/features/catalog/store/recentSearches.store';
 import { SettingsRow } from '@/features/settings/components/SettingsRow';
-import { colors, spacing, typography } from '@/theme';
+import { colors, spacing } from '@/theme';
 import { t } from '@/i18n';
 
 const SUPPORT_EMAIL = 'support@example.com';
 
 export function SettingsScreen() {
+  const router = useRouter();
   const clearSearches = useRecentSearchesStore((state) => state.clearSearches);
   const [clearConfirmation, setClearConfirmation] = useState(false);
 
@@ -24,6 +27,10 @@ export function SettingsScreen() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+      <SettingsRow
+        label={t('orderLookup.settingsLinkLabel')}
+        onPress={() => router.push('/order-lookup')}
+      />
       <SettingsRow label={t('settings.currencyLabel')} value={t('settings.currencyValue')} />
       <SettingsRow label={t('settings.languageLabel')} value={t('settings.languageValue')} />
       <SettingsRow label={t('settings.contactSupportLabel')} onPress={handleContactSupport} />
@@ -33,7 +40,9 @@ export function SettingsScreen() {
       />
       <SettingsRow label={t('settings.clearRecentSearchesLabel')} onPress={handleClearRecentSearches} />
       {clearConfirmation ? (
-        <Text style={styles.confirmation}>{t('settings.clearRecentSearchesConfirmation')}</Text>
+        <Text variant="caption" color={colors.success} style={styles.confirmation}>
+          {t('settings.clearRecentSearchesConfirmation')}
+        </Text>
       ) : null}
       <SettingsRow label={t('settings.termsLabel')} />
       <SettingsRow label={t('settings.appVersionLabel')} value={Constants.expoConfig?.version ?? '1.0.0'} />
@@ -50,8 +59,6 @@ const styles = StyleSheet.create({
     padding: spacing.lg,
   },
   confirmation: {
-    ...typography.caption,
-    color: colors.success,
     paddingVertical: spacing.sm,
   },
 });

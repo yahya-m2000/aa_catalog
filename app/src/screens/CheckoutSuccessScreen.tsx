@@ -1,8 +1,11 @@
 import { useRouter } from 'expo-router';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
+import { Button } from '@/components/Button';
+import { Card } from '@/components/Card';
+import { Text } from '@/components/Text';
 import { t } from '@/i18n';
-import { colors, radius, spacing, typography } from '@/theme';
+import { colors, spacing } from '@/theme';
 
 interface CheckoutSuccessScreenProps {
   reference: string;
@@ -13,15 +16,29 @@ export function CheckoutSuccessScreen({ reference }: CheckoutSuccessScreenProps)
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{t('checkoutSuccess.title')}</Text>
-      <Text style={styles.message}>{t('checkoutSuccess.message')}</Text>
-      <View style={styles.referenceBox}>
-        <Text style={styles.referenceLabel}>{t('checkoutSuccess.referenceLabel')}</Text>
-        <Text style={styles.referenceValue}>{reference}</Text>
-      </View>
-      <Pressable style={styles.homeButton} onPress={() => router.replace('/')}>
-        <Text style={styles.homeButtonLabel}>{t('checkoutSuccess.continueShopping')}</Text>
-      </Pressable>
+      <Text variant="heading">{t('checkoutSuccess.title')}</Text>
+      <Text variant="body" color={colors.textSecondary} style={styles.message}>
+        {t('checkoutSuccess.message')}
+      </Text>
+      <Card style={styles.referenceBox}>
+        <Text variant="caption" color={colors.textMuted}>
+          {t('checkoutSuccess.referenceLabel')}
+        </Text>
+        <Text variant="price" color={colors.textPrimary}>
+          {reference}
+        </Text>
+      </Card>
+      <Button
+        label={t('checkoutSuccess.viewPaymentInstructions')}
+        variant="secondary"
+        style={styles.paymentButton}
+        onPress={() => router.push({ pathname: '/checkout/payment', params: { reference } })}
+      />
+      <Button
+        label={t('checkoutSuccess.continueShopping')}
+        variant="outline"
+        onPress={() => router.replace('/')}
+      />
     </View>
   );
 }
@@ -35,42 +52,16 @@ const styles = StyleSheet.create({
     padding: spacing.xl,
     gap: spacing.lg,
   },
-  title: {
-    ...typography.heading,
-    color: colors.textPrimary,
-  },
   message: {
-    ...typography.body,
-    color: colors.textSecondary,
     textAlign: 'center',
   },
   referenceBox: {
-    backgroundColor: colors.surface,
-    borderWidth: 1,
-    borderColor: colors.border,
-    borderRadius: radius.lg,
-    paddingHorizontal: spacing.xl,
-    paddingVertical: spacing.lg,
     alignItems: 'center',
     gap: spacing.xs,
-  },
-  referenceLabel: {
-    ...typography.caption,
-    color: colors.textMuted,
-  },
-  referenceValue: {
-    ...typography.price,
-    color: colors.purpleLight,
-  },
-  homeButton: {
-    marginTop: spacing.md,
-    backgroundColor: colors.purple,
-    borderRadius: radius.md,
     paddingHorizontal: spacing.xl,
-    paddingVertical: spacing.md,
   },
-  homeButtonLabel: {
-    ...typography.bodyStrong,
-    color: colors.white,
+  paymentButton: {
+    alignSelf: 'stretch',
+    marginTop: spacing.md,
   },
 });

@@ -2,14 +2,14 @@ import { useState } from 'react';
 
 import { useBasketStore } from '@/features/basket/store/basket.store';
 import { ApiClientError } from '@/services/api/client';
-import { submitOrder, type SubmitOrderResult } from '@/services/api/orders.api';
+import { submitOrder, type PaymentMethod, type SubmitOrderResult } from '@/services/api/orders.api';
 import type { CheckoutForm } from '@/types/checkout';
 
 interface UseSubmitOrderResult {
   status: 'idle' | 'submitting' | 'success' | 'error';
   errorMessage: string | null;
   result: SubmitOrderResult | null;
-  submit: (customer: CheckoutForm) => Promise<void>;
+  submit: (customer: CheckoutForm, paymentMethod: PaymentMethod) => Promise<void>;
 }
 
 export function useSubmitOrder(): UseSubmitOrderResult {
@@ -20,7 +20,7 @@ export function useSubmitOrder(): UseSubmitOrderResult {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [result, setResult] = useState<SubmitOrderResult | null>(null);
 
-  const submit = async (customer: CheckoutForm) => {
+  const submit = async (customer: CheckoutForm, paymentMethod: PaymentMethod) => {
     setStatus('submitting');
     setErrorMessage(null);
 
@@ -33,6 +33,7 @@ export function useSubmitOrder(): UseSubmitOrderResult {
           quantity: item.quantity,
           notes: item.notes,
         })),
+        paymentMethod,
       });
       setResult(orderResult);
       setStatus('success');

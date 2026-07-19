@@ -1,16 +1,18 @@
 import { useMemo, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
+import { Button } from '@/components/Button';
 import { ErrorState } from '@/components/ErrorState';
 import { LoadingState } from '@/components/LoadingState';
 import { PriceTag } from '@/components/PriceTag';
+import { Text } from '@/components/Text';
 import { useBasketStore } from '@/features/basket/store/basket.store';
 import { ProductImageGallery } from '@/features/catalog/components/ProductImageGallery';
 import { QuantitySelector } from '@/features/catalog/components/QuantitySelector';
 import { VariantSelector } from '@/features/catalog/components/VariantSelector';
 import { useProductDetail } from '@/features/catalog/hooks/useProductDetail';
 import { t } from '@/i18n';
-import { colors, radius, spacing, typography } from '@/theme';
+import { colors, spacing } from '@/theme';
 import type { ProductSku } from '@/types/product';
 
 interface ProductDetailScreenProps {
@@ -92,12 +94,20 @@ export function ProductDetailScreen({ productId }: ProductDetailScreenProps) {
       <ProductImageGallery images={product.images} />
 
       <View style={styles.body}>
-        <Text style={styles.title}>{product.title}</Text>
-        {product.sellerName ? <Text style={styles.seller}>{product.sellerName}</Text> : null}
+        <Text variant="heading">{product.title}</Text>
+        {product.sellerName ? (
+          <Text variant="caption" color={colors.textMuted}>
+            {product.sellerName}
+          </Text>
+        ) : null}
 
         <PriceTag price={selectedSku ? selectedSku.price : product.price} />
 
-        {product.description ? <Text style={styles.description}>{product.description}</Text> : null}
+        {product.description ? (
+          <Text variant="body" color={colors.textSecondary}>
+            {product.description}
+          </Text>
+        ) : null}
 
         {hasVariants ? (
           <VariantSelector
@@ -108,7 +118,7 @@ export function ProductDetailScreen({ productId }: ProductDetailScreenProps) {
         ) : null}
 
         <View style={styles.quantityRow}>
-          <Text style={styles.quantityLabel}>{t('productDetail.quantityLabel')}</Text>
+          <Text variant="bodyStrong">{t('productDetail.quantityLabel')}</Text>
           <QuantitySelector
             quantity={quantity}
             maxQuantity={selectedSku?.inventory}
@@ -116,17 +126,18 @@ export function ProductDetailScreen({ productId }: ProductDetailScreenProps) {
           />
         </View>
 
-        <Pressable
+        <Button
+          label={canAddToBasket ? t('common.addToBasket') : t('productDetail.selectOptions')}
+          variant="secondary"
           disabled={!canAddToBasket}
-          style={[styles.addButton, !canAddToBasket && styles.addButtonDisabled]}
           onPress={handleAddToBasket}
-        >
-          <Text style={styles.addButtonLabel}>
-            {canAddToBasket ? t('common.addToBasket') : t('productDetail.selectOptions')}
-          </Text>
-        </Pressable>
+        />
 
-        {confirmation ? <Text style={styles.confirmation}>{t('productDetail.addedToBasket')}</Text> : null}
+        {confirmation ? (
+          <Text variant="body" color={colors.success} style={styles.confirmation}>
+            {t('productDetail.addedToBasket')}
+          </Text>
+        ) : null}
       </View>
     </ScrollView>
   );
@@ -144,43 +155,12 @@ const styles = StyleSheet.create({
     padding: spacing.lg,
     gap: spacing.lg,
   },
-  title: {
-    ...typography.heading,
-    color: colors.textPrimary,
-  },
-  seller: {
-    ...typography.caption,
-    color: colors.textMuted,
-  },
-  description: {
-    ...typography.body,
-    color: colors.textSecondary,
-  },
   quantityRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  quantityLabel: {
-    ...typography.bodyStrong,
-    color: colors.textPrimary,
-  },
-  addButton: {
-    backgroundColor: colors.purple,
-    borderRadius: radius.md,
-    paddingVertical: spacing.md,
-    alignItems: 'center',
-  },
-  addButtonDisabled: {
-    opacity: 0.5,
-  },
-  addButtonLabel: {
-    ...typography.bodyStrong,
-    color: colors.white,
-  },
   confirmation: {
-    ...typography.body,
-    color: colors.success,
     textAlign: 'center',
   },
 });

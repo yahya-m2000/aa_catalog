@@ -70,8 +70,8 @@ const styles = StyleSheet.create({
   },
   addButton: {
     marginTop: spacing.sm,
-    backgroundColor: colors.purple,
-    borderRadius: radius.md,
+    backgroundColor: colors.textPrimary,
+    borderRadius: radius.full,
     paddingVertical: spacing.sm,
     alignItems: 'center',
   },

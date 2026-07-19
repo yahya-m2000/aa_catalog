@@ -9,12 +9,14 @@ export default function TabsLayout() {
       screenOptions={{
         headerStyle: { backgroundColor: colors.background },
         headerTintColor: colors.textPrimary,
+        headerTitleStyle: { fontFamily: 'InterTight_600SemiBold' },
         tabBarStyle: {
-          backgroundColor: colors.surface,
+          backgroundColor: colors.background,
           borderTopColor: colors.border,
         },
-        tabBarActiveTintColor: colors.purpleLight,
+        tabBarActiveTintColor: colors.textPrimary,
         tabBarInactiveTintColor: colors.textMuted,
+        tabBarLabelStyle: { fontFamily: 'Inter_500Medium', fontSize: 12 },
       }}
     >
       <Tabs.Screen name="index" options={{ title: t('navigation.home') }} />

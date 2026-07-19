@@ -1,7 +1,9 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
+import { Button } from './Button';
+import { Text } from './Text';
 import { t } from '@/i18n';
-import { colors, radius, spacing, typography } from '@/theme';
+import { colors, spacing } from '@/theme';
 
 interface ErrorStateProps {
   title: string;
@@ -13,13 +15,15 @@ interface ErrorStateProps {
 export function ErrorState({ title, message, onRetry, retryLabel = t('common.tryAgain') }: ErrorStateProps) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
-      {message ? <Text style={styles.message}>{message}</Text> : null}
-      {onRetry ? (
-        <Pressable style={styles.button} onPress={onRetry}>
-          <Text style={styles.buttonLabel}>{retryLabel}</Text>
-        </Pressable>
+      <Text variant="subheading" style={styles.title}>
+        {title}
+      </Text>
+      {message ? (
+        <Text variant="body" color={colors.textSecondary} style={styles.message}>
+          {message}
+        </Text>
       ) : null}
+      {onRetry ? <Button label={retryLabel} onPress={onRetry} style={styles.button} /> : null}
     </View>
   );
 }
@@ -32,25 +36,13 @@ const styles = StyleSheet.create({
     padding: spacing.xl,
   },
   title: {
-    ...typography.subheading,
-    color: colors.textPrimary,
     textAlign: 'center',
   },
   message: {
-    ...typography.body,
-    color: colors.textSecondary,
     marginTop: spacing.sm,
     textAlign: 'center',
   },
   button: {
     marginTop: spacing.lg,
-    backgroundColor: colors.purple,
-    paddingHorizontal: spacing.xl,
-    paddingVertical: spacing.md,
-    borderRadius: radius.md,
-  },
-  buttonLabel: {
-    ...typography.bodyStrong,
-    color: colors.white,
   },
 });

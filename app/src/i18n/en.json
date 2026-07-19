@@ -12,7 +12,9 @@
     "settings": "Settings",
     "product": "Product",
     "checkout": "Checkout",
-    "orderPlaced": "Order placed"
+    "orderPlaced": "Order placed",
+    "paymentInstructions": "Payment instructions",
+    "orderLookup": "Track an order"
   },
   "home": {
     "searchPlaceholder": "Search products",
@@ -47,6 +49,12 @@
     "serviceAndMarkup": "Service & markup",
     "total": "Total"
   },
+  "priceBreakdown": {
+    "itemPrice": "Item price",
+    "deliveryEstimate": "Delivery estimate",
+    "serviceFee": "Service fee",
+    "total": "Total"
+  },
   "checkout": {
     "deliveryDetailsHeading": "Delivery details",
     "orderSummaryHeading": "Order summary",
@@ -58,6 +66,9 @@
     "cityLabel": "City",
     "postcodeLabel": "Postcode",
     "countryLabel": "Country",
+    "paymentMethodHeading": "Payment method",
+    "paymentMethodCash": "Cash",
+    "paymentMethodZaad": "Zaad",
     "placingOrder": "Placing order...",
     "placeOrder": "Place order",
     "validation": {
@@ -75,7 +86,33 @@
     "title": "Order placed",
     "message": "Thank you for your order. We've received it and will be in touch with payment and shipping details.",
     "referenceLabel": "Order reference",
+    "viewPaymentInstructions": "View payment instructions",
     "continueShopping": "Continue shopping"
+  },
+  "payment": {
+    "title": "Payment instructions",
+    "loading": "Loading payment instructions...",
+    "loadErrorTitle": "Couldn't load payment instructions",
+    "deadlineNote": "Please complete payment within {days} days of placing your order.",
+    "doneButton": "Done"
+  },
+  "orderLookup": {
+    "title": "Track an order",
+    "intro": "Enter your order reference and the email you used at checkout to see its status.",
+    "referenceLabel": "Order reference",
+    "emailLabel": "Email",
+    "submitButton": "Find order",
+    "searching": "Searching...",
+    "notFoundTitle": "No matching order found",
+    "notFoundMessage": "Double check your order reference and email, then try again.",
+    "resultReferenceLabel": "Order reference",
+    "resultStatusLabel": "Status",
+    "resultDateLabel": "Placed on",
+    "resultPaymentMethodLabel": "Payment method",
+    "resultItemsHeading": "Items",
+    "resultTotalLabel": "Total",
+    "newSearch": "Search again",
+    "settingsLinkLabel": "Track an order"
   },
   "settings": {
     "currencyLabel": "Currency",

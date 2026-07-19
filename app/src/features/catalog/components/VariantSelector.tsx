@@ -106,8 +106,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
   },
   optionSelected: {
-    borderColor: colors.purple,
-    backgroundColor: colors.purple,
+    borderColor: colors.textPrimary,
+    backgroundColor: colors.textPrimary,
   },
   optionDisabled: {
     opacity: 0.4,

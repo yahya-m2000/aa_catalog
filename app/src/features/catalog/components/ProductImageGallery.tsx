@@ -82,6 +82,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.border,
   },
   dotActive: {
-    backgroundColor: colors.purpleLight,
+    backgroundColor: colors.accent,
   },
 });

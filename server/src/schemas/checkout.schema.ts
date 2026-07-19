@@ -19,8 +19,9 @@ export const orderItemSchema = z.object({
 
 export const createOrderSchema = z.object({
   customer: checkoutFormSchema,
-  // Optional + defaulted: the checkout UI doesn't collect a payment method yet
-  // (that's Run 15's job, per the plan's roadmap) — Cash/Zaad selection lands then.
+  // Optional + defaulted: older/unknown clients that don't send a payment method
+  // still default sensibly to Cash. The checkout UI (Run 15) now collects this via
+  // CheckoutForm's Cash/Zaad selector.
   paymentMethod: z.enum(['Cash', 'Zaad']).default('Cash'),
   items: z.array(orderItemSchema).min(1, 'Basket must contain at least one item'),
 });

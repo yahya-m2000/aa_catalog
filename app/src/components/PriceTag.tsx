@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import { colors, spacing, typography } from '@/theme';
+import { Text } from './Text';
+import { colors, spacing } from '@/theme';
 import type { ProductPrice } from '@/types/product';
 
 interface PriceTagProps {
@@ -17,11 +18,15 @@ export function PriceTag({ price, compact = false }: PriceTagProps) {
 
   return (
     <View style={styles.container}>
-      <Text style={[styles.finalAmount, compact && styles.finalAmountCompact]}>
+      <Text
+        variant="price"
+        color={colors.textPrimary}
+        style={compact ? styles.finalAmountCompact : undefined}
+      >
         ${formatAmount(price.finalAmount)}
       </Text>
       {showOriginal ? (
-        <Text style={styles.originalAmount}>
+        <Text variant="caption" color={colors.textMuted} style={styles.originalAmount}>
           {price.currency} {formatAmount(price.amount)}
         </Text>
       ) : null}
@@ -36,16 +41,10 @@ const styles = StyleSheet.create({
     gap: spacing.xs,
     flexWrap: 'wrap',
   },
-  finalAmount: {
-    ...typography.price,
-    color: colors.purpleLight,
-  },
   finalAmountCompact: {
     fontSize: 16,
   },
   originalAmount: {
-    ...typography.caption,
-    color: colors.textMuted,
     textDecorationLine: 'line-through',
   },
 });

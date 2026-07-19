@@ -1,5 +1,6 @@
-import { StyleSheet, Text, TextInput, View, type TextInputProps } from 'react-native';
+import { StyleSheet, TextInput, View, type TextInputProps } from 'react-native';
 
+import { Text } from './Text';
 import { colors, radius, spacing, typography } from '@/theme';
 
 interface InputProps extends TextInputProps {
@@ -10,13 +11,19 @@ interface InputProps extends TextInputProps {
 export function Input({ label, errorMessage, style, ...textInputProps }: InputProps) {
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>{label}</Text>
+      <Text variant="caption" color={colors.textSecondary}>
+        {label}
+      </Text>
       <TextInput
         placeholderTextColor={colors.textMuted}
         style={[styles.input, errorMessage && styles.inputError, style]}
         {...textInputProps}
       />
-      {errorMessage ? <Text style={styles.errorMessage}>{errorMessage}</Text> : null}
+      {errorMessage ? (
+        <Text variant="caption" color={colors.error}>
+          {errorMessage}
+        </Text>
+      ) : null}
     </View>
   );
 }
@@ -25,13 +32,9 @@ const styles = StyleSheet.create({
   container: {
     gap: spacing.xs,
   },
-  label: {
-    ...typography.caption,
-    color: colors.textSecondary,
-  },
   input: {
     ...typography.body,
-    backgroundColor: colors.surface,
+    backgroundColor: colors.background,
     borderWidth: 1,
     borderColor: colors.border,
     borderRadius: radius.md,
@@ -41,9 +44,5 @@ const styles = StyleSheet.create({
   },
   inputError: {
     borderColor: colors.error,
-  },
-  errorMessage: {
-    ...typography.caption,
-    color: colors.error,
   },
 });

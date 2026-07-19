@@ -21,7 +21,7 @@ export function ProductGrid({ products, onProductPress, onAddToBasket, isRefresh
       columnWrapperStyle={styles.row}
       contentContainerStyle={styles.content}
       refreshControl={
-        <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} tintColor={colors.purpleLight} />
+        <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} tintColor={colors.textPrimary} />
       }
       renderItem={({ item }) => (
         <ProductCard product={item} onPress={onProductPress} onAddToBasket={onAddToBasket} />

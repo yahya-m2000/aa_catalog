@@ -1,13 +1,14 @@
 import { useRouter } from 'expo-router';
 import { useMemo } from 'react';
-import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 
+import { Button } from '@/components/Button';
 import { EmptyState } from '@/components/EmptyState';
 import { BasketListItem } from '@/features/basket/components/BasketListItem';
 import { BasketSummary } from '@/features/basket/components/BasketSummary';
 import { useBasketStore } from '@/features/basket/store/basket.store';
 import { t } from '@/i18n';
-import { colors, radius, spacing, typography } from '@/theme';
+import { colors, spacing } from '@/theme';
 import { calculateBasketTotals } from '@/utils/pricing/pricing';
 
 function basketItemKey(productId: string, skuId: string | undefined): string {
@@ -26,9 +27,12 @@ export function BasketScreen() {
     return (
       <View style={styles.container}>
         <EmptyState title={t('basket.emptyTitle')} message={t('basket.emptyMessage')} />
-        <Pressable style={styles.browseButton} onPress={() => router.push('/')}>
-          <Text style={styles.browseButtonLabel}>{t('basket.browseProducts')}</Text>
-        </Pressable>
+        <Button
+          label={t('basket.browseProducts')}
+          variant="secondary"
+          style={styles.browseButton}
+          onPress={() => router.push('/')}
+        />
       </View>
     );
   }
@@ -50,9 +54,7 @@ export function BasketScreen() {
       />
       <View style={styles.footer}>
         <BasketSummary totals={totals} />
-        <Pressable style={styles.checkoutButton} onPress={() => router.push('/checkout')}>
-          <Text style={styles.checkoutButtonLabel}>{t('basket.checkout')}</Text>
-        </Pressable>
+        <Button label={t('basket.checkout')} variant="secondary" onPress={() => router.push('/checkout')} />
       </View>
     </View>
   );
@@ -76,26 +78,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
     gap: spacing.lg,
   },
-  checkoutButton: {
-    backgroundColor: colors.purple,
-    borderRadius: radius.md,
-    paddingVertical: spacing.md,
-    alignItems: 'center',
-  },
-  checkoutButtonLabel: {
-    ...typography.bodyStrong,
-    color: colors.white,
-  },
   browseButton: {
     marginTop: spacing.lg,
     alignSelf: 'center',
-    backgroundColor: colors.purple,
-    borderRadius: radius.md,
-    paddingHorizontal: spacing.xl,
-    paddingVertical: spacing.md,
-  },
-  browseButtonLabel: {
-    ...typography.bodyStrong,
-    color: colors.white,
   },
 });
