@@ -1,3 +1,4 @@
+import { paymentConfig } from '../config/payment.config';
 import { pricingConfig } from '../config/pricing.config';
 import { getCurrencyRates } from '../integrations/currency/rates.service';
 import { GraphRequestError } from '../integrations/graph/graph.client';
@@ -14,7 +15,6 @@ import { generateOrderReference } from '../utils/orderReference';
 import { assessPriceChange, calculateBasketTotals, roundToPrecision } from './pricing.service';
 
 const PRICING_POLICY_VERSION = '2026-07-19';
-const ORDER_EXPIRY_DAYS = 7;
 
 export class OrderItemNotFoundError extends Error {
   constructor(productId: string, skuId?: string) {
@@ -119,7 +119,9 @@ async function persistOrderToSharePoint(
   internalNotes: string | undefined,
 ): Promise<GraphListItem> {
   const nowIso = now.toISOString();
-  const expiresAt = new Date(now.getTime() + ORDER_EXPIRY_DAYS * 24 * 60 * 60 * 1000).toISOString();
+  const expiresAt = new Date(
+    now.getTime() + paymentConfig.paymentDeadlineDays * 24 * 60 * 60 * 1000,
+  ).toISOString();
 
   const graphInput: CreateOrderItemInput = {
     reference,
