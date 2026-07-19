@@ -86,6 +86,7 @@ mock.module('../src/integrations/graph/graph.client.ts', {
 
 let createOrderItem: typeof import('../src/integrations/graph/orders.repository.js').createOrderItem;
 let getOrderItemByReference: typeof import('../src/integrations/graph/orders.repository.js').getOrderItemByReference;
+let getExpirableOrderItems: typeof import('../src/integrations/graph/orders.repository.js').getExpirableOrderItems;
 let updateEmailStatus: typeof import('../src/integrations/graph/orders.repository.js').updateEmailStatus;
 let GraphConflictError: typeof import('../src/integrations/graph/graph.client.js').GraphConflictError;
 
@@ -94,6 +95,7 @@ test.before(async () => {
   const client = await import('../src/integrations/graph/graph.client.js');
   createOrderItem = repo.createOrderItem;
   getOrderItemByReference = repo.getOrderItemByReference;
+  getExpirableOrderItems = repo.getExpirableOrderItems;
   updateEmailStatus = repo.updateEmailStatus;
   GraphConflictError = client.GraphConflictError;
 });
@@ -227,4 +229,28 @@ test('updateEmailStatus throws GraphConflictError on a 412 response', async () =
     () => updateEmailStatus('42', '"stale"', 'CustomerEmailStatus', 'Sent'),
     GraphConflictError,
   );
+});
+
+test('getExpirableOrderItems filters on ExpiresAt and the pending CustomerStatus set', async () => {
+  resetFakes();
+  nextGetResponse = { value: [{ id: '9', '@odata.etag': '"1"', fields: { OrderReference: 'ORD-1' } }] };
+
+  const items = await getExpirableOrderItems('2026-07-19T00:00:00.000Z');
+
+  assert.equal(calls[0].method, 'get');
+  assert.match(calls[0].filterValue ?? '', /fields\/ExpiresAt lt '2026-07-19T00:00:00\.000Z'/);
+  assert.match(calls[0].filterValue ?? '', /fields\/CustomerStatus eq 'Order Received'/);
+  assert.match(calls[0].filterValue ?? '', /fields\/CustomerStatus eq 'Payment Pending'/);
+  assert.match(calls[0].filterValue ?? '', /fields\/CustomerStatus eq 'Processing'/);
+  assert.equal(items.length, 1);
+  assert.equal(items[0].id, '9');
+});
+
+test('getExpirableOrderItems returns an empty array when nothing matches', async () => {
+  resetFakes();
+  nextGetResponse = { value: [] };
+
+  const items = await getExpirableOrderItems('2026-07-19T00:00:00.000Z');
+
+  assert.deepEqual(items, []);
 });

@@ -25,6 +25,7 @@ export const env = {
     ordersListId: process.env.GRAPH_ORDERS_LIST_ID,
     sendMailUserId: process.env.GRAPH_SENDMAIL_USER_ID,
   },
+  internalTaskSecret: process.env.INTERNAL_TASK_SECRET,
 };
 
 export function assertGraphConfigured(): void {

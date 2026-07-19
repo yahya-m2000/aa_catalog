@@ -137,6 +137,36 @@ export async function updateEmailStatus(
   return updateOrderItemFields(itemId, etag, { [which]: status });
 }
 
+/**
+ * Lists order items past their ExpiresAt that are still in a pending (non-final)
+ * CustomerStatus — the candidate set for the 7-day unpaid-order expiry sweep (plan §7a).
+ * Filters only on the indexed OrderReference-adjacent ExpiresAt/CustomerStatus columns;
+ * final statuses (Completed/Cancelled/Expired) are excluded so a sweep never re-touches
+ * an order the team (or a prior sweep) already resolved.
+ */
+const PENDING_CUSTOMER_STATUSES: CustomerStatus[] = ['Order Received', 'Payment Pending', 'Processing'];
+
+export async function getExpirableOrderItems(nowIso: string): Promise<GraphListItem[]> {
+  try {
+    const client = getGraphClient();
+    const statusFilter = PENDING_CUSTOMER_STATUSES.map((status) => `fields/CustomerStatus eq '${status}'`).join(
+      ' or ',
+    );
+    const result = await client
+      .api(`${listBase()}/items`)
+      .filter(`fields/ExpiresAt lt '${nowIso}' and (${statusFilter})`)
+      .expand('fields')
+      .get();
+
+    const items = (result.value ?? []) as GraphListItem[];
+    recordGraphCall('getExpirableOrderItems', true);
+    return items;
+  } catch (error) {
+    recordGraphCall('getExpirableOrderItems', false);
+    throw new GraphRequestError('Failed to list expirable orders in SharePoint', undefined, error);
+  }
+}
+
 export async function updateOrderStatus(
   itemId: string,
   etag: string,

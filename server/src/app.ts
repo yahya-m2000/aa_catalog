@@ -5,6 +5,7 @@ import { errorHandler } from './middleware/errorHandler';
 import { currencyRouter } from './routes/currency.routes';
 import { healthRouter } from './routes/health.routes';
 import { homeRouter } from './routes/home.routes';
+import { internalRouter } from './routes/internal.routes';
 import { ordersRouter } from './routes/orders.routes';
 import { paymentRouter } from './routes/payment.routes';
 import { productsRouter } from './routes/products.routes';
@@ -21,6 +22,7 @@ export function createApp() {
   app.use('/api/orders', ordersRouter);
   app.use('/api/home', homeRouter);
   app.use('/api/payment', paymentRouter);
+  app.use('/api/internal', internalRouter);
 
   app.use(errorHandler);
 
