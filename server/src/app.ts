@@ -4,6 +4,7 @@ import express from 'express';
 import { errorHandler } from './middleware/errorHandler';
 import { currencyRouter } from './routes/currency.routes';
 import { healthRouter } from './routes/health.routes';
+import { homeRouter } from './routes/home.routes';
 import { ordersRouter } from './routes/orders.routes';
 import { productsRouter } from './routes/products.routes';
 
@@ -17,6 +18,7 @@ export function createApp() {
   app.use('/api/products', productsRouter);
   app.use('/api/currency', currencyRouter);
   app.use('/api/orders', ordersRouter);
+  app.use('/api/home', homeRouter);
 
   app.use(errorHandler);
 

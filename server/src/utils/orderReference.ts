@@ -1,15 +1,13 @@
-const REFERENCE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-const REFERENCE_SUFFIX_LENGTH = 4;
+import { randomBytes } from 'node:crypto';
 
-function randomSuffix(): string {
+const REFERENCE_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // no 0/O/1/I — avoids visual ambiguity
+const REFERENCE_LENGTH = 12;
+
+export function generateOrderReference(): string {
+  const bytes = randomBytes(REFERENCE_LENGTH);
   let suffix = '';
-  for (let i = 0; i < REFERENCE_SUFFIX_LENGTH; i++) {
-    suffix += REFERENCE_CHARS[Math.floor(Math.random() * REFERENCE_CHARS.length)];
+  for (let i = 0; i < REFERENCE_LENGTH; i++) {
+    suffix += REFERENCE_CHARS[bytes[i] % REFERENCE_CHARS.length];
   }
-  return suffix;
-}
-
-export function generateOrderReference(date: Date = new Date()): string {
-  const datePart = date.toISOString().slice(0, 10).replace(/-/g, '');
-  return `ORD-${datePart}-${randomSuffix()}`;
+  return `ORD-${suffix}`;
 }
