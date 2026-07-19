@@ -1,8 +1,15 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
-import { applyMarkup, calculateBasketTotals, convertToUSD } from '../src/services/pricing.service';
+import {
+  applyMarkup,
+  assessPriceChange,
+  calculateBasketTotals,
+  convertToUSD,
+  roundToPrecision,
+} from '../src/services/pricing.service';
 import type { BasketItem } from '../src/types/basket';
+import type { PricingConfig } from '../src/config/pricing.config';
 
 test('convertToUSD returns the same amount when currency is already USD', () => {
   const result = convertToUSD(100, 'USD', { USD: 1, CNY: 7.2 });
@@ -52,4 +59,72 @@ test('calculateBasketTotals sums subtotal, markup, and final total across quanti
 test('calculateBasketTotals returns zeroed totals for an empty basket', () => {
   const totals = calculateBasketTotals([]);
   assert.deepEqual(totals, { subtotalUSD: 0, markupTotalUSD: 0, finalTotalUSD: 0 });
+});
+
+test('roundToPrecision rounds to 2 decimal places by default', () => {
+  const config: PricingConfig = {
+    markupPercentage: 0,
+    serviceFeeFixedUSD: 0,
+    priceIncreaseAbsorbThresholdPercent: 3,
+    priceIncreaseAbsorbThresholdUSD: 3,
+    roundingPrecision: 2,
+    deliveryZones: {},
+    defaultDeliveryZone: 'somaliland',
+  };
+  assert.equal(roundToPrecision(10.005, config), 10.01);
+  assert.equal(roundToPrecision(10.004, config), 10);
+});
+
+const thresholdConfig: PricingConfig = {
+  markupPercentage: 20,
+  serviceFeeFixedUSD: 0,
+  priceIncreaseAbsorbThresholdPercent: 3,
+  priceIncreaseAbsorbThresholdUSD: 3,
+  roundingPrecision: 2,
+  deliveryZones: { somaliland: { baseUsd: 15 } },
+  defaultDeliveryZone: 'somaliland',
+};
+
+test('assessPriceChange treats a price decrease as within threshold', () => {
+  const result = assessPriceChange(100, 95, thresholdConfig);
+  assert.equal(result.withinThreshold, true);
+  assert.equal(result.deltaUsd, -5);
+});
+
+test('assessPriceChange treats no change as within threshold', () => {
+  const result = assessPriceChange(100, 100, thresholdConfig);
+  assert.equal(result.withinThreshold, true);
+  assert.equal(result.deltaUsd, 0);
+});
+
+test('assessPriceChange absorbs an increase under both the percent and USD caps', () => {
+  // 3% of 100 = 3, USD cap = 3 -> allowed = min(3, 3) = 3. A $2 increase is within threshold.
+  const result = assessPriceChange(100, 102, thresholdConfig);
+  assert.equal(result.withinThreshold, true);
+});
+
+test('assessPriceChange flags an increase exceeding the USD cap when the USD cap is the lower bound', () => {
+  // On a $200 base, 3% = $6, but the USD cap is $3 (the lower of the two) -> $4 increase exceeds it.
+  const result = assessPriceChange(200, 204, thresholdConfig);
+  assert.equal(result.withinThreshold, false);
+  assert.equal(result.deltaUsd, 4);
+});
+
+test('assessPriceChange flags an increase exceeding the percent cap when the percent cap is the lower bound', () => {
+  // On a $50 base, 3% = $1.50 (the lower of the two, since USD cap is $3) -> $2 increase exceeds it.
+  const result = assessPriceChange(50, 52, thresholdConfig);
+  assert.equal(result.withinThreshold, false);
+});
+
+test('assessPriceChange treats an increase exactly at the threshold as within threshold', () => {
+  // On a $100 base, allowed = min(3, 3) = 3 -> a $3 increase is exactly at the boundary.
+  const result = assessPriceChange(100, 103, thresholdConfig);
+  assert.equal(result.withinThreshold, true);
+  assert.equal(result.deltaUsd, 3);
+});
+
+test('assessPriceChange handles a zero original quote without dividing by zero', () => {
+  const result = assessPriceChange(0, 5, thresholdConfig);
+  assert.equal(result.deltaPercent, 0);
+  assert.equal(result.deltaUsd, 5);
 });
