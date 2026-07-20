@@ -51,6 +51,9 @@ export interface OrderListItemFields {
   ExpiredAt?: string;
   CustomerEmailStatus?: EmailDeliveryStatus;
   InternalEmailStatus?: EmailDeliveryStatus;
+  HiobuyOrderId?: string;
+  HiobuyPurchaseStatus?: string;
+  ProcuredAt?: string;
 }
 
 export interface GraphListItem {

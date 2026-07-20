@@ -141,3 +141,50 @@ export interface HiobuyThemeItemsResponse {
   dimension: string;
   items: HiobuySearchItem[];
 }
+
+// Procurement (Run 9 follow-on, 2026-07-20) — verified against
+// https://hiobuy.com/en/api-docs/order-preview and /order-create. Never called against
+// the customer; these create/pay a real order against the business's own linked
+// Taobao/Alipay account. See project memory project_hiobuy_production_plan.md.
+
+export interface HiobuyReceiver {
+  name: string;
+  mobile: string;
+  province: string;
+  city: string;
+  address: string;
+  district?: string;
+}
+
+export interface HiobuyOrderLine {
+  offer_id: string;
+  spec_id?: string;
+  quantity: number;
+}
+
+export interface HiobuyOrderCreateRequest {
+  channel: 'taobao';
+  receiver: HiobuyReceiver;
+  lines: HiobuyOrderLine[];
+  external_order_id?: string;
+  outer_purchase_id?: string;
+  buyer_message?: string;
+}
+
+export interface HiobuyOrderCreateResult {
+  order_id: string;
+  external_order_id?: string;
+  status?: string;
+  request_id?: string;
+}
+
+export interface HiobuyOrderPayRequest {
+  channel: 'taobao';
+  order_id: string;
+}
+
+export interface HiobuyOrderPayResult {
+  order_id: string;
+  status: string;
+  request_id?: string;
+}

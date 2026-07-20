@@ -34,6 +34,7 @@ export function normalizeProductDetail(raw: HiobuyProductDetail): NormalizedProd
     },
     skus: raw.variants.map(normalizeVariant),
     sourcePlatform: 'taobao',
+    sourceProductId: raw.source_product_id,
   };
 }
 
@@ -51,5 +52,6 @@ export function normalizeSearchItem(raw: HiobuySearchItem): NormalizedProduct {
     },
     skus: [],
     sourcePlatform: 'taobao',
+    sourceProductId: raw.source_product_id,
   };
 }

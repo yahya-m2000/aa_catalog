@@ -76,6 +76,7 @@ async function resolveLineItem(
     usdAmount: price.usdAmount,
     markupAmount: price.finalAmount - price.usdAmount,
     finalAmount: price.finalAmount,
+    sourceProductId: pricedProduct.sourceProductId,
   };
 
   let priceChangeFlag: string | undefined;
