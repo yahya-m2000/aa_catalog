@@ -13,9 +13,12 @@ import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+import { View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { t } from '@/i18n';
+import '../../globals.css';
+import { GluestackUIProvider } from '../../components/ui/gluestack-ui-provider';
+import { PersistentSearchHeader } from '@/navigation/PersistentSearchHeader';
 import { colors } from '@/theme';
 
 SplashScreen.preventAutoHideAsync().catch(() => {
@@ -45,27 +48,33 @@ export default function RootLayout() {
   }
 
   return (
-    <SafeAreaProvider>
-      {/* color-scheme: light — the app is light-only for now (see theme/colors.ts) */}
-      <StatusBar style="dark" />
-      <Stack
-        screenOptions={{
-          headerStyle: { backgroundColor: colors.background },
-          headerTintColor: colors.textPrimary,
-          headerTitleStyle: { fontFamily: 'InterTight_600SemiBold' },
-          contentStyle: { backgroundColor: colors.background },
-        }}
-      >
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="product/[id]" options={{ title: t('navigation.product') }} />
-        <Stack.Screen name="checkout" options={{ title: t('navigation.checkout') }} />
-        <Stack.Screen
-          name="checkout/success"
-          options={{ title: t('navigation.orderPlaced'), headerLeft: () => null }}
-        />
-        <Stack.Screen name="checkout/payment" options={{ title: t('navigation.paymentInstructions') }} />
-        <Stack.Screen name="order-lookup" options={{ title: t('navigation.orderLookup') }} />
-      </Stack>
-    </SafeAreaProvider>
+    <GluestackUIProvider mode="light">
+      <SafeAreaProvider>
+        {/* color-scheme: light — the app is light-only for now (see theme/colors.ts) */}
+        <StatusBar style="dark" />
+        <PersistentSearchHeader />
+        <View style={{ flex: 1 }}>
+          <Stack
+            screenOptions={{
+              headerStyle: { backgroundColor: colors.background },
+              headerTintColor: colors.textPrimary,
+              headerTitleStyle: { fontFamily: 'InterTight_600SemiBold' },
+              contentStyle: { backgroundColor: colors.background },
+            }}
+          >
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="search"
+              options={{ headerShown: false, animation: 'fade_from_bottom', animationDuration: 220 }}
+            />
+            <Stack.Screen name="product/[id]" options={{ headerShown: false }} />
+            <Stack.Screen name="checkout" options={{ headerShown: false }} />
+            <Stack.Screen name="checkout/success" options={{ headerShown: false }} />
+            <Stack.Screen name="checkout/payment" options={{ headerShown: false }} />
+            <Stack.Screen name="order-lookup" options={{ headerShown: false }} />
+          </Stack>
+        </View>
+      </SafeAreaProvider>
+    </GluestackUIProvider>
   );
 }

@@ -11,6 +11,7 @@ export { colors as palettes } from './colors';
 
 export { spacing, radius } from './spacing';
 export { typography, fontFamily } from './typography';
+export { shadow } from './shadow';
 
 export type { ColorToken, ColorScheme } from './colors';
 export type { SpacingToken, RadiusToken } from './spacing';

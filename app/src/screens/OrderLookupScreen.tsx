@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
@@ -46,9 +46,9 @@ export function OrderLookupScreen() {
 
   if (result) {
     return (
-      <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-        <Card style={styles.card}>
-          <View style={styles.detailRow}>
+      <ScrollView className="flex-1 bg-background" contentContainerStyle={{ padding: spacing.lg, gap: spacing.lg }}>
+        <Card className="gap-sm">
+          <View className="flex-row justify-between items-center">
             <Text variant="caption" color={colors.textMuted}>
               {t('orderLookup.resultReferenceLabel')}
             </Text>
@@ -56,7 +56,7 @@ export function OrderLookupScreen() {
               {result.reference}
             </Text>
           </View>
-          <View style={styles.detailRow}>
+          <View className="flex-row justify-between items-center">
             <Text variant="caption" color={colors.textMuted}>
               {t('orderLookup.resultStatusLabel')}
             </Text>
@@ -64,7 +64,7 @@ export function OrderLookupScreen() {
               {result.status}
             </Text>
           </View>
-          <View style={styles.detailRow}>
+          <View className="flex-row justify-between items-center">
             <Text variant="caption" color={colors.textMuted}>
               {t('orderLookup.resultDateLabel')}
             </Text>
@@ -72,7 +72,7 @@ export function OrderLookupScreen() {
               {new Date(result.createdAt).toLocaleDateString()}
             </Text>
           </View>
-          <View style={styles.detailRow}>
+          <View className="flex-row justify-between items-center">
             <Text variant="caption" color={colors.textMuted}>
               {t('orderLookup.resultPaymentMethodLabel')}
             </Text>
@@ -82,11 +82,11 @@ export function OrderLookupScreen() {
           </View>
         </Card>
 
-        <Card style={styles.card}>
+        <Card className="gap-sm">
           <Text variant="subheading">{t('orderLookup.resultItemsHeading')}</Text>
           {result.items.map((item, index) => (
-            <View key={`${item.productId}-${item.skuId ?? index}`} style={styles.itemRow}>
-              <Text variant="body" color={colors.textPrimary} style={styles.itemTitle}>
+            <View key={`${item.productId}-${item.skuId ?? index}`} className="flex-row justify-between py-xs">
+              <Text variant="body" color={colors.textPrimary} style={{ flex: 1, marginRight: spacing.sm }}>
                 {item.productTitle}
               </Text>
               <Text variant="body" color={colors.textSecondary}>
@@ -94,7 +94,7 @@ export function OrderLookupScreen() {
               </Text>
             </View>
           ))}
-          <View style={[styles.detailRow, styles.totalRow]}>
+          <View className="flex-row justify-between items-center mt-sm pt-sm border-t border-border">
             <Text variant="bodyStrong" color={colors.textPrimary}>
               {t('orderLookup.resultTotalLabel')}
             </Text>
@@ -110,7 +110,7 @@ export function OrderLookupScreen() {
   }
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+    <ScrollView className="flex-1 bg-background" contentContainerStyle={{ padding: spacing.lg, gap: spacing.lg }}>
       <Text variant="heading">{t('orderLookup.title')}</Text>
       <Text variant="body" color={colors.textSecondary}>
         {t('orderLookup.intro')}
@@ -155,37 +155,3 @@ export function OrderLookupScreen() {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-  content: {
-    padding: spacing.lg,
-    gap: spacing.lg,
-  },
-  card: {
-    gap: spacing.sm,
-  },
-  detailRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  itemRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: spacing.xs,
-  },
-  itemTitle: {
-    flex: 1,
-    marginRight: spacing.sm,
-  },
-  totalRow: {
-    marginTop: spacing.sm,
-    paddingTop: spacing.sm,
-    borderTopWidth: 1,
-    borderTopColor: colors.border,
-  },
-});

@@ -1,11 +1,11 @@
 import { useRouter } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { Text } from '@/components/Text';
 import { t } from '@/i18n';
-import { colors, spacing } from '@/theme';
+import { colors } from '@/theme';
 
 interface CheckoutSuccessScreenProps {
   reference: string;
@@ -15,12 +15,12 @@ export function CheckoutSuccessScreen({ reference }: CheckoutSuccessScreenProps)
   const router = useRouter();
 
   return (
-    <View style={styles.container}>
+    <View className="flex-1 bg-background items-center justify-center p-xl gap-lg">
       <Text variant="heading">{t('checkoutSuccess.title')}</Text>
-      <Text variant="body" color={colors.textSecondary} style={styles.message}>
+      <Text variant="body" color={colors.textSecondary} style={{ textAlign: 'center' }}>
         {t('checkoutSuccess.message')}
       </Text>
-      <Card style={styles.referenceBox}>
+      <Card className="items-center gap-xs px-xl">
         <Text variant="caption" color={colors.textMuted}>
           {t('checkoutSuccess.referenceLabel')}
         </Text>
@@ -31,7 +31,7 @@ export function CheckoutSuccessScreen({ reference }: CheckoutSuccessScreenProps)
       <Button
         label={t('checkoutSuccess.viewPaymentInstructions')}
         variant="secondary"
-        style={styles.paymentButton}
+        style={{ alignSelf: 'stretch', marginTop: 12 }}
         onPress={() => router.push({ pathname: '/checkout/payment', params: { reference } })}
       />
       <Button
@@ -42,26 +42,3 @@ export function CheckoutSuccessScreen({ reference }: CheckoutSuccessScreenProps)
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: spacing.xl,
-    gap: spacing.lg,
-  },
-  message: {
-    textAlign: 'center',
-  },
-  referenceBox: {
-    alignItems: 'center',
-    gap: spacing.xs,
-    paddingHorizontal: spacing.xl,
-  },
-  paymentButton: {
-    alignSelf: 'stretch',
-    marginTop: spacing.md,
-  },
-});

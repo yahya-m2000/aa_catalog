@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Text } from './Text';
 import { colors, spacing } from '@/theme';
 import type { ProductPrice } from '@/types/product';
+import { splitCurrencyAmount } from '@/utils/format';
 
 interface PriceTagProps {
   price: ProductPrice;
@@ -15,6 +16,7 @@ function formatAmount(amount: number): string {
 
 export function PriceTag({ price, compact = false }: PriceTagProps) {
   const showOriginal = price.currency !== 'USD';
+  const { whole, cents } = splitCurrencyAmount(price.finalAmount);
 
   return (
     <View style={styles.container}>
@@ -23,7 +25,14 @@ export function PriceTag({ price, compact = false }: PriceTagProps) {
         color={colors.textPrimary}
         style={compact ? styles.finalAmountCompact : undefined}
       >
-        ${formatAmount(price.finalAmount)}
+        ${whole}
+        <Text
+          variant="price"
+          color={colors.textPrimary}
+          style={[compact ? styles.finalAmountCompact : undefined, styles.cents]}
+        >
+          .{cents}
+        </Text>
       </Text>
       {showOriginal ? (
         <Text variant="caption" color={colors.textMuted} style={styles.originalAmount}>
@@ -44,7 +53,12 @@ const styles = StyleSheet.create({
   finalAmountCompact: {
     fontSize: 16,
   },
+  cents: {
+    fontSize: 12,
+  },
   originalAmount: {
     textDecorationLine: 'line-through',
+    fontSize: 11,
+    lineHeight: 14,
   },
 });

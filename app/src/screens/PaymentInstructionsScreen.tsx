@@ -1,6 +1,6 @@
 import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
@@ -66,17 +66,17 @@ export function PaymentInstructionsScreen({ reference }: PaymentInstructionsScre
   }
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+    <ScrollView className="flex-1 bg-background" contentContainerStyle={{ padding: spacing.lg, gap: spacing.lg }}>
       <Text variant="heading">{t('payment.title')}</Text>
 
-      <Card style={styles.card}>
-        <Text variant="body" color={colors.textPrimary} style={styles.instructionsText}>
+      <Card className="gap-sm">
+        <Text variant="body" color={colors.textPrimary} style={{ lineHeight: 22 }}>
           {instructions.instructionsEn}
         </Text>
       </Card>
 
-      <Card style={styles.card}>
-        <View style={styles.detailRow}>
+      <Card className="gap-sm">
+        <View className="flex-row justify-between items-center">
           <Text variant="caption" color={colors.textMuted}>
             {t('checkout.paymentMethodZaad')}
           </Text>
@@ -84,12 +84,12 @@ export function PaymentInstructionsScreen({ reference }: PaymentInstructionsScre
             {instructions.zaadNumber}
           </Text>
         </View>
-        <View style={styles.detailRow}>
+        <View className="flex-row justify-between items-center">
           <Text variant="caption" color={colors.textMuted}>
             {instructions.zaadAccountName}
           </Text>
         </View>
-        <View style={styles.detailRow}>
+        <View className="flex-row justify-between items-center">
           <Text variant="caption" color={colors.textMuted}>
             {t('checkout.paymentMethodCash')}
           </Text>
@@ -99,39 +99,16 @@ export function PaymentInstructionsScreen({ reference }: PaymentInstructionsScre
         </View>
       </Card>
 
-      <Text variant="caption" color={colors.textSecondary} style={styles.deadlineNote}>
+      <Text variant="caption" color={colors.textSecondary} style={{ textAlign: 'center' }}>
         {t('payment.deadlineNote', { days: instructions.paymentDeadlineDays })}
       </Text>
 
-      <Button label={t('payment.doneButton')} onPress={() => router.replace('/')} style={styles.doneButton} />
+      <Button
+        label={t('payment.doneButton')}
+        variant="secondary"
+        onPress={() => router.replace('/')}
+        style={{ marginTop: 12 }}
+      />
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-  content: {
-    padding: spacing.lg,
-    gap: spacing.lg,
-  },
-  card: {
-    gap: spacing.sm,
-  },
-  instructionsText: {
-    lineHeight: 22,
-  },
-  detailRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  deadlineNote: {
-    textAlign: 'center',
-  },
-  doneButton: {
-    marginTop: spacing.md,
-  },
-});

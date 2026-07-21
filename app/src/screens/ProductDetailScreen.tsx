@@ -1,19 +1,26 @@
+import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 import { useMemo, useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 
-import { Button } from '@/components/Button';
+import { Card } from '@/components/Card';
 import { ErrorState } from '@/components/ErrorState';
 import { LoadingState } from '@/components/LoadingState';
 import { PriceTag } from '@/components/PriceTag';
 import { Text } from '@/components/Text';
+import { useAppToast } from '@/components/useAppToast';
 import { useBasketStore } from '@/features/basket/store/basket.store';
 import { ProductImageGallery } from '@/features/catalog/components/ProductImageGallery';
+import { ProductRail } from '@/features/catalog/components/ProductRail';
+import { ProductStickyBar } from '@/features/catalog/components/ProductStickyBar';
+import { ProductThumbnailStrip } from '@/features/catalog/components/ProductThumbnailStrip';
 import { QuantitySelector } from '@/features/catalog/components/QuantitySelector';
 import { VariantSelector } from '@/features/catalog/components/VariantSelector';
 import { useProductDetail } from '@/features/catalog/hooks/useProductDetail';
+import { useSimilarProducts } from '@/features/catalog/hooks/useSimilarProducts';
 import { t } from '@/i18n';
 import { colors, spacing } from '@/theme';
-import type { ProductSku } from '@/types/product';
+import type { NormalizedProduct, ProductSku } from '@/types/product';
 
 interface ProductDetailScreenProps {
   productId: string;
@@ -29,13 +36,25 @@ function resolveSelectedSku(skus: ProductSku[], selectedOptions: Record<string, 
   );
 }
 
+const LOW_STOCK_THRESHOLD = 10;
+
+function stockLabel(inventory: number | undefined): string | null {
+  if (inventory === undefined) return t('productDetail.inStock');
+  if (inventory <= 0) return t('productDetail.outOfStock');
+  if (inventory <= LOW_STOCK_THRESHOLD) return t('productDetail.lowStock', { count: inventory });
+  return t('productDetail.inStock');
+}
+
 export function ProductDetailScreen({ productId }: ProductDetailScreenProps) {
+  const router = useRouter();
   const { product, status, errorMessage, refresh } = useProductDetail(productId);
+  const { products: similarProducts } = useSimilarProducts(productId);
   const addItem = useBasketStore((state) => state.addItem);
+  const { showToast } = useAppToast();
 
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>({});
   const [quantity, setQuantity] = useState(1);
-  const [confirmation, setConfirmation] = useState(false);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   const hasVariants = (product?.skus.length ?? 0) > 0;
   const selectedSku = useMemo(
@@ -46,7 +65,6 @@ export function ProductDetailScreen({ productId }: ProductDetailScreenProps) {
   const handleSelectOption = (optionName: string, value: string) => {
     setSelectedOptions((prev) => ({ ...prev, [optionName]: value }));
     setQuantity(1);
-    setConfirmation(false);
   };
 
   const canAddToBasket = !hasVariants || selectedSku !== null;
@@ -66,101 +84,139 @@ export function ProductDetailScreen({ productId }: ProductDetailScreenProps) {
       unitPrice: price,
     });
 
-    setConfirmation(true);
+    showToast(t('common.addedToBasket'));
   };
 
-  if (status === 'loading') {
-    return <LoadingState message={t('productDetail.loadingProduct')} />;
-  }
+  const handleRelatedProductPress = (relatedProduct: NormalizedProduct) => {
+    router.push({ pathname: '/product/[id]', params: { id: relatedProduct.id } });
+  };
 
-  if (status === 'not-found') {
+  const handleAddRelatedToBasket = (relatedProduct: NormalizedProduct) => {
+    const defaultSku = relatedProduct.skus.find((sku) => sku.inventory > 0) ?? relatedProduct.skus[0];
+    const primaryImage = relatedProduct.images.find((image) => image.isPrimary) ?? relatedProduct.images[0];
+
+    addItem({
+      productId: relatedProduct.id,
+      productTitle: relatedProduct.title,
+      productImageUrl: defaultSku?.imageUrl ?? primaryImage?.url ?? '',
+      selectedSku: defaultSku ? { skuId: defaultSku.skuId, options: defaultSku.options } : undefined,
+      quantity: 1,
+      unitPrice: defaultSku ? defaultSku.price : relatedProduct.price,
+    });
+    showToast(t('common.addedToBasket'));
+  };
+
+  if (status === 'loading' || status === 'not-found' || status === 'error' || !product) {
     return (
-      <ErrorState title={t('productDetail.notFoundTitle')} message={t('productDetail.notFoundMessage')} />
+      <View className="flex-1 bg-background">
+        {status === 'loading' ? (
+          <LoadingState message={t('productDetail.loadingProduct')} />
+        ) : status === 'not-found' ? (
+          <ErrorState title={t('productDetail.notFoundTitle')} message={t('productDetail.notFoundMessage')} />
+        ) : (
+          <ErrorState
+            title={t('productDetail.loadErrorTitle')}
+            message={errorMessage ?? undefined}
+            onRetry={refresh}
+          />
+        )}
+      </View>
     );
   }
 
-  if (status === 'error' || !product) {
-    return (
-      <ErrorState
-        title={t('productDetail.loadErrorTitle')}
-        message={errorMessage ?? undefined}
-        onRetry={refresh}
-      />
-    );
-  }
+  const displayPrice = selectedSku ? selectedSku.price : product.price;
+  const stock = stockLabel(selectedSku ? selectedSku.inventory : undefined);
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <ProductImageGallery images={product.images} />
-
-      <View style={styles.body}>
-        <Text variant="heading">{product.title}</Text>
-        {product.sellerName ? (
-          <Text variant="caption" color={colors.textMuted}>
-            {product.sellerName}
-          </Text>
-        ) : null}
-
-        <PriceTag price={selectedSku ? selectedSku.price : product.price} />
-
-        {product.description ? (
-          <Text variant="body" color={colors.textSecondary}>
-            {product.description}
-          </Text>
-        ) : null}
-
-        {hasVariants ? (
-          <VariantSelector
-            skus={product.skus}
-            selectedOptions={selectedOptions}
-            onSelectOption={handleSelectOption}
-          />
-        ) : null}
-
-        <View style={styles.quantityRow}>
-          <Text variant="bodyStrong">{t('productDetail.quantityLabel')}</Text>
-          <QuantitySelector
-            quantity={quantity}
-            maxQuantity={selectedSku?.inventory}
-            onChange={setQuantity}
-          />
-        </View>
-
-        <Button
-          label={canAddToBasket ? t('common.addToBasket') : t('productDetail.selectOptions')}
-          variant="secondary"
-          disabled={!canAddToBasket}
-          onPress={handleAddToBasket}
+    <View className="flex-1 bg-background">
+      <ScrollView
+        className="flex-1"
+        contentContainerStyle={{ paddingBottom: spacing.xxxl * 2 }}
+        showsVerticalScrollIndicator={false}
+      >
+        <ProductImageGallery
+          images={product.images}
+          activeIndex={activeImageIndex}
+          onIndexChange={setActiveImageIndex}
+        />
+        <ProductThumbnailStrip
+          images={product.images}
+          activeIndex={activeImageIndex}
+          onSelect={setActiveImageIndex}
         />
 
-        {confirmation ? (
-          <Text variant="body" color={colors.success} style={styles.confirmation}>
-            {t('productDetail.addedToBasket')}
-          </Text>
+        <View className="p-lg gap-lg">
+          {product.category ? (
+            <Text variant="caption" color={colors.textMuted}>
+              {product.category}
+            </Text>
+          ) : null}
+
+          <Text variant="heading">{product.title}</Text>
+
+          {product.sellerName ? (
+            <View className="flex-row items-center gap-xs">
+              <Ionicons name="storefront-outline" size={16} color={colors.textMuted} />
+              <Text variant="caption" color={colors.textMuted}>
+                {product.sellerName}
+              </Text>
+            </View>
+          ) : null}
+
+          <View className="flex-row items-center justify-between">
+            <PriceTag price={displayPrice} />
+            {stock ? (
+              <Text variant="captionStrong" color={selectedSku?.inventory === 0 ? colors.error : colors.success}>
+                {stock}
+              </Text>
+            ) : null}
+          </View>
+
+          {hasVariants ? (
+            <VariantSelector
+              skus={product.skus}
+              selectedOptions={selectedOptions}
+              onSelectOption={handleSelectOption}
+            />
+          ) : null}
+
+          <View className="flex-row items-center justify-between">
+            <Text variant="bodyStrong">{t('productDetail.quantityLabel')}</Text>
+            <QuantitySelector
+              quantity={quantity}
+              maxQuantity={selectedSku?.inventory}
+              onChange={setQuantity}
+            />
+          </View>
+        </View>
+
+        {product.description ? (
+          <View className="px-lg mb-xl">
+            <Text variant="subheading" style={{ color: colors.textPrimary, marginBottom: spacing.md }}>
+              {t('productDetail.descriptionHeading')}
+            </Text>
+            <Card>
+              <Text variant="body" color={colors.textSecondary}>
+                {product.description}
+              </Text>
+            </Card>
+          </View>
         ) : null}
-      </View>
-    </ScrollView>
+
+        <ProductRail
+          label={t('productDetail.relatedProductsHeading')}
+          products={similarProducts}
+          onProductPress={handleRelatedProductPress}
+          onAddToBasket={handleAddRelatedToBasket}
+        />
+      </ScrollView>
+
+      <ProductStickyBar
+        price={displayPrice}
+        ctaLabel={canAddToBasket ? t('common.addToBasket') : t('productDetail.selectOptions')}
+        disabled={!canAddToBasket}
+        onPress={handleAddToBasket}
+      />
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-  content: {
-    paddingBottom: spacing.xxxl,
-  },
-  body: {
-    padding: spacing.lg,
-    gap: spacing.lg,
-  },
-  quantityRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  confirmation: {
-    textAlign: 'center',
-  },
-});

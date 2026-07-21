@@ -1,6 +1,5 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 
-import { colors, radius, spacing, typography } from '@/theme';
 import type { ProductSku } from '@/types/product';
 
 interface VariantSelectorProps {
@@ -43,11 +42,11 @@ export function VariantSelector({ skus, selectedOptions, onSelectOption }: Varia
   if (groups.size === 0) return null;
 
   return (
-    <View style={styles.container}>
+    <View className="gap-lg">
       {Array.from(groups.entries()).map(([optionName, values]) => (
-        <View key={optionName} style={styles.group}>
-          <Text style={styles.groupLabel}>{optionName}</Text>
-          <View style={styles.optionsRow}>
+        <View key={optionName} className="gap-sm">
+          <Text className="font-sans-semibold text-[15px] leading-[20px] text-foreground">{optionName}</Text>
+          <View className="flex-row flex-wrap gap-sm">
             {values.map((value) => {
               const isSelected = selectedOptions[optionName] === value;
               const isAvailable = isOptionValueAvailable(skus, selectedOptions, optionName, value);
@@ -55,19 +54,15 @@ export function VariantSelector({ skus, selectedOptions, onSelectOption }: Varia
                 <Pressable
                   key={value}
                   disabled={!isAvailable}
-                  style={[
-                    styles.option,
-                    isSelected && styles.optionSelected,
-                    !isAvailable && styles.optionDisabled,
-                  ]}
+                  className={`px-lg py-sm rounded-md border ${
+                    isSelected ? 'bg-primary border-primary' : 'bg-background border-border'
+                  } ${!isAvailable ? 'opacity-40' : ''}`}
                   onPress={() => onSelectOption(optionName, value)}
                 >
                   <Text
-                    style={[
-                      styles.optionLabel,
-                      isSelected && styles.optionLabelSelected,
-                      !isAvailable && styles.optionLabelDisabled,
-                    ]}
+                    className={`font-sans text-[15px] leading-[20px] ${
+                      isSelected ? 'text-primary-foreground font-sans-semibold' : 'text-muted-foreground'
+                    } ${!isAvailable ? 'line-through' : ''}`}
                   >
                     {value}
                   </Text>
@@ -80,47 +75,3 @@ export function VariantSelector({ skus, selectedOptions, onSelectOption }: Varia
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    gap: spacing.lg,
-  },
-  group: {
-    gap: spacing.sm,
-  },
-  groupLabel: {
-    ...typography.bodyStrong,
-    color: colors.textPrimary,
-  },
-  optionsRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: spacing.sm,
-  },
-  option: {
-    paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.sm,
-    borderRadius: radius.md,
-    borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.surface,
-  },
-  optionSelected: {
-    borderColor: colors.textPrimary,
-    backgroundColor: colors.textPrimary,
-  },
-  optionDisabled: {
-    opacity: 0.4,
-  },
-  optionLabel: {
-    ...typography.body,
-    color: colors.textSecondary,
-  },
-  optionLabelSelected: {
-    color: colors.white,
-    fontWeight: '600',
-  },
-  optionLabelDisabled: {
-    textDecorationLine: 'line-through',
-  },
-});

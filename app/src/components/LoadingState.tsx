@@ -1,7 +1,7 @@
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
-
 import { Text } from './Text';
-import { colors, spacing } from '@/theme';
+import { Spinner } from '../../components/ui/spinner';
+import { VStack } from '../../components/ui/vstack';
+import { colors } from '@/theme';
 
 interface LoadingStateProps {
   message?: string;
@@ -9,26 +9,13 @@ interface LoadingStateProps {
 
 export function LoadingState({ message }: LoadingStateProps) {
   return (
-    <View style={styles.container}>
-      <ActivityIndicator color={colors.textPrimary} size="large" />
+    <VStack className="flex-1 items-center justify-center p-xl" space="md">
+      <Spinner size="large" color={colors.textPrimary} />
       {message ? (
-        <Text variant="body" color={colors.textSecondary} style={styles.message}>
+        <Text variant="body" color={colors.textSecondary} style={{ textAlign: 'center' }}>
           {message}
         </Text>
       ) : null}
-    </View>
+    </VStack>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: spacing.xl,
-  },
-  message: {
-    marginTop: spacing.md,
-    textAlign: 'center',
-  },
-});

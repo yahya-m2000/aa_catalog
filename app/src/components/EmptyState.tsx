@@ -1,7 +1,8 @@
-import { StyleSheet, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 import { Text } from './Text';
-import { colors, spacing } from '@/theme';
+import { VStack } from '../../components/ui/vstack';
+import { colors } from '@/theme';
 
 interface EmptyStateProps {
   title: string;
@@ -10,31 +11,16 @@ interface EmptyStateProps {
 
 export function EmptyState({ title, message }: EmptyStateProps) {
   return (
-    <View style={styles.container}>
-      <Text variant="subheading" style={styles.title}>
+    <VStack className="flex-1 items-center justify-center p-xl" space="sm">
+      <Ionicons name="file-tray-outline" size={40} color={colors.textMuted} style={{ marginBottom: 4 }} />
+      <Text variant="subheading" style={{ textAlign: 'center' }}>
         {title}
       </Text>
       {message ? (
-        <Text variant="body" color={colors.textSecondary} style={styles.message}>
+        <Text variant="body" color={colors.textSecondary} style={{ textAlign: 'center' }}>
           {message}
         </Text>
       ) : null}
-    </View>
+    </VStack>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: spacing.xl,
-  },
-  title: {
-    textAlign: 'center',
-  },
-  message: {
-    marginTop: spacing.sm,
-    textAlign: 'center',
-  },
-});

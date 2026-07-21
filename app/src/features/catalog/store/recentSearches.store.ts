@@ -7,6 +7,7 @@ const MAX_RECENT_SEARCHES = 10;
 interface RecentSearchesState {
   searches: string[];
   addSearch: (query: string) => void;
+  removeSearch: (query: string) => void;
   clearSearches: () => void;
 }
 
@@ -23,6 +24,10 @@ export const useRecentSearchesStore = create<RecentSearchesState>()(
           );
           return { searches: [trimmed, ...withoutDuplicate].slice(0, MAX_RECENT_SEARCHES) };
         }),
+      removeSearch: (query) =>
+        set((state) => ({
+          searches: state.searches.filter((existing) => existing.toLowerCase() !== query.toLowerCase()),
+        })),
       clearSearches: () => set({ searches: [] }),
     }),
     {

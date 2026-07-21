@@ -29,6 +29,13 @@ interface ColorPalette {
 
   success: string;
   error: string;
+
+  // Cardboard/kraft-paper palette — used only by the persistent top search
+  // header (TopSearchHeader), never elsewhere. Deliberately outside the
+  // monochrome+purple system since it's a distinct "shipping box" motif.
+  cardboard: string;
+  cardboardStripe: string;
+  cardboardText: string;
 }
 
 const light: ColorPalette = {
@@ -47,6 +54,10 @@ const light: ColorPalette = {
 
   white: '#FFFFFF',
   black: '#0C0C0C',
+
+  cardboard: '#C19A6B', // kraft-paper brown
+  cardboardStripe: '#8B6339', // darker brown pinstripe
+  cardboardText: '#3E2A17', // deep brown, legible on cardboard
 
   success: '#22C55E',
   error: '#EF4444',

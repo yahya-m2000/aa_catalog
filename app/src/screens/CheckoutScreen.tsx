@@ -1,6 +1,6 @@
 import { useRouter } from 'expo-router';
 import { useEffect, useMemo } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 
 import { Text } from '@/components/Text';
 import { BasketReviewSummary } from '@/features/checkout/components/BasketReviewSummary';
@@ -8,7 +8,7 @@ import { CheckoutForm } from '@/features/checkout/components/CheckoutForm';
 import { useSubmitOrder } from '@/features/checkout/hooks/useSubmitOrder';
 import { useBasketStore } from '@/features/basket/store/basket.store';
 import { t } from '@/i18n';
-import { colors, radius, spacing } from '@/theme';
+import { colors, spacing } from '@/theme';
 import { calculateBasketTotals } from '@/utils/pricing/pricing';
 
 export function CheckoutScreen() {
@@ -28,14 +28,14 @@ export function CheckoutScreen() {
   }, [status, result, items.length, router]);
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+    <ScrollView className="flex-1 bg-background" contentContainerStyle={{ padding: spacing.lg, gap: spacing.lg, paddingBottom: spacing.xxxl }}>
       <BasketReviewSummary items={items} totals={totals} />
 
       <Text variant="subheading">{t('checkout.deliveryDetailsHeading')}</Text>
       <CheckoutForm onSubmit={submit} isSubmitting={status === 'submitting'} />
 
       {status === 'error' ? (
-        <View style={styles.errorBanner}>
+        <View className="bg-background border border-border border-l-[3px] border-l-destructive p-md">
           <Text variant="body" color={colors.error}>
             {errorMessage}
           </Text>
@@ -44,22 +44,3 @@ export function CheckoutScreen() {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-  content: {
-    padding: spacing.lg,
-    gap: spacing.lg,
-    paddingBottom: spacing.xxxl,
-  },
-  errorBanner: {
-    backgroundColor: colors.surface,
-    borderWidth: 1,
-    borderColor: colors.error,
-    borderRadius: radius.md,
-    padding: spacing.md,
-  },
-});

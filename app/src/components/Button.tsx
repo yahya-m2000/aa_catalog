@@ -1,7 +1,6 @@
-import { Pressable, StyleSheet, type PressableProps, type StyleProp, type ViewStyle } from 'react-native';
+import type { PressableProps, StyleProp, ViewStyle } from 'react-native';
 
-import { Text } from './Text';
-import { colors, radius, spacing, typography } from '@/theme';
+import { Button as GSButton, ButtonText as GSButtonText } from '../../components/ui/button';
 
 type ButtonVariant = 'primary' | 'secondary' | 'outline';
 
@@ -10,64 +9,38 @@ interface ButtonProps extends Omit<PressableProps, 'style'> {
   variant?: ButtonVariant;
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
+  textClassName?: string;
 }
+
+const VARIANT_CLASSES: Record<ButtonVariant, string> = {
+  primary: 'bg-primary rounded-full',
+  // Brand purple — reserved for one primary CTA per screen, applied by the
+  // screen itself, not a variant every screen reaches for by default.
+  secondary: 'bg-brand-accent rounded-full',
+  outline: 'bg-background border border-border rounded-full',
+};
+
+const TEXT_VARIANT_CLASSES: Record<ButtonVariant, string> = {
+  primary: 'text-primary-foreground',
+  secondary: 'text-brand-accent-foreground',
+  outline: 'text-foreground',
+};
 
 /**
  * Fully-rounded button primitive per the design system (aagroup-web's
  * `rounded-full` convention). `variant="primary"` (near-black, the default
- * UI action color) should be used for most buttons; `variant="accent"` does
- * not exist here on purpose — the purple accent is reserved for exactly one
- * primary CTA per screen, applied by the screen itself via `style`, not as
- * a button variant every screen reaches for by default.
+ * UI action color) should be used for most buttons; `variant="secondary"`
+ * is the brand purple, reserved for exactly one primary CTA per screen.
  */
-export function Button({ label, variant = 'primary', disabled, style, ...rest }: ButtonProps) {
+export function Button({ label, variant = 'primary', disabled, style, textClassName, ...rest }: ButtonProps) {
   return (
-    <Pressable
+    <GSButton
       disabled={disabled}
-      style={[
-        styles.base,
-        variant === 'primary' && styles.primary,
-        variant === 'secondary' && styles.secondary,
-        variant === 'outline' && styles.outline,
-        disabled && styles.disabled,
-        style,
-      ]}
+      className={VARIANT_CLASSES[variant]}
+      style={style}
       {...rest}
     >
-      <Text
-        variant="bodyStrong"
-        color={variant === 'outline' ? colors.textPrimary : colors.white}
-        style={styles.label}
-      >
-        {label}
-      </Text>
-    </Pressable>
+      <GSButtonText className={`${TEXT_VARIANT_CLASSES[variant]} ${textClassName ?? ''}`}>{label}</GSButtonText>
+    </GSButton>
   );
 }
-
-const styles = StyleSheet.create({
-  base: {
-    borderRadius: radius.full,
-    paddingVertical: spacing.md,
-    paddingHorizontal: spacing.xl,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  primary: {
-    backgroundColor: colors.textPrimary,
-  },
-  secondary: {
-    backgroundColor: colors.accent,
-  },
-  outline: {
-    backgroundColor: 'transparent',
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
-  disabled: {
-    opacity: 0.5,
-  },
-  label: {
-    ...typography.bodyStrong,
-  },
-});

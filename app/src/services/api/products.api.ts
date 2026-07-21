@@ -23,3 +23,7 @@ export function searchProducts(params: SearchProductsParams): Promise<PaginatedR
 export function getProductById(id: string): Promise<NormalizedProduct> {
   return apiGet<NormalizedProduct>(`/api/products/${id}`);
 }
+
+export function getSimilarProducts(id: string): Promise<NormalizedProduct[]> {
+  return apiGet<NormalizedProduct[]>(`/api/products/${id}/similar`);
+}

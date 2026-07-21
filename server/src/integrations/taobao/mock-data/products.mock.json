@@ -7,9 +7,9 @@
     "category": "Men's Clothing > Outdoor Apparel",
     "sellerName": "Outdoor Gear Co.",
     "images": [
-      { "url": "https://picsum.photos/seed/mock-1001-a/800/800", "isPrimary": true },
-      { "url": "https://picsum.photos/seed/mock-1001-b/800/800", "isPrimary": false },
-      { "url": "https://picsum.photos/seed/mock-1001-c/800/800", "isPrimary": false }
+      { "url": "https://picsum.photos/id/20/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/id/27/800/800", "isPrimary": false },
+      { "url": "https://picsum.photos/id/34/800/800", "isPrimary": false }
     ],
     "price": { "amount": 89, "currency": "CNY", "usdAmount": 89, "finalAmount": 89 },
     "skus": [
@@ -18,28 +18,28 @@
         "options": [{ "name": "Color", "value": "White" }, { "name": "Size", "value": "M" }],
         "price": { "amount": 89, "currency": "CNY", "usdAmount": 89, "finalAmount": 89 },
         "inventory": 42,
-        "imageUrl": "https://picsum.photos/seed/mock-1001-a/800/800"
+        "imageUrl": "https://picsum.photos/id/20/800/800"
       },
       {
         "skuId": "mock-1001-sku-2",
         "options": [{ "name": "Color", "value": "White" }, { "name": "Size", "value": "L" }],
         "price": { "amount": 89, "currency": "CNY", "usdAmount": 89, "finalAmount": 89 },
         "inventory": 31,
-        "imageUrl": "https://picsum.photos/seed/mock-1001-a/800/800"
+        "imageUrl": "https://picsum.photos/id/20/800/800"
       },
       {
         "skuId": "mock-1001-sku-3",
         "options": [{ "name": "Color", "value": "Navy" }, { "name": "Size", "value": "M" }],
         "price": { "amount": 95, "currency": "CNY", "usdAmount": 95, "finalAmount": 95 },
         "inventory": 0,
-        "imageUrl": "https://picsum.photos/seed/mock-1001-b/800/800"
+        "imageUrl": "https://picsum.photos/id/27/800/800"
       },
       {
         "skuId": "mock-1001-sku-4",
         "options": [{ "name": "Color", "value": "Navy" }, { "name": "Size", "value": "L" }],
         "price": { "amount": 95, "currency": "CNY", "usdAmount": 95, "finalAmount": 95 },
         "inventory": 18,
-        "imageUrl": "https://picsum.photos/seed/mock-1001-b/800/800"
+        "imageUrl": "https://picsum.photos/id/27/800/800"
       }
     ],
     "sourcePlatform": "mock"
@@ -52,8 +52,8 @@
     "category": "Women's Clothing > Shirts",
     "sellerName": "Tammy's Boutique",
     "images": [
-      { "url": "https://picsum.photos/seed/mock-1002-a/800/800", "isPrimary": true },
-      { "url": "https://picsum.photos/seed/mock-1002-b/800/800", "isPrimary": false }
+      { "url": "https://picsum.photos/id/41/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/id/48/800/800", "isPrimary": false }
     ],
     "price": { "amount": 279, "currency": "CNY", "usdAmount": 279, "finalAmount": 279 },
     "skus": [
@@ -62,21 +62,21 @@
         "options": [{ "name": "Color", "value": "Pearl White" }, { "name": "Size", "value": "S" }],
         "price": { "amount": 279, "currency": "CNY", "usdAmount": 279, "finalAmount": 279 },
         "inventory": 12,
-        "imageUrl": "https://picsum.photos/seed/mock-1002-a/800/800"
+        "imageUrl": "https://picsum.photos/id/41/800/800"
       },
       {
         "skuId": "mock-1002-sku-2",
         "options": [{ "name": "Color", "value": "Pearl White" }, { "name": "Size", "value": "M" }],
         "price": { "amount": 279, "currency": "CNY", "usdAmount": 279, "finalAmount": 279 },
         "inventory": 9,
-        "imageUrl": "https://picsum.photos/seed/mock-1002-a/800/800"
+        "imageUrl": "https://picsum.photos/id/41/800/800"
       },
       {
         "skuId": "mock-1002-sku-3",
         "options": [{ "name": "Color", "value": "Black" }, { "name": "Size", "value": "S" }],
         "price": { "amount": 279, "currency": "CNY", "usdAmount": 279, "finalAmount": 279 },
         "inventory": 5,
-        "imageUrl": "https://picsum.photos/seed/mock-1002-b/800/800"
+        "imageUrl": "https://picsum.photos/id/48/800/800"
       }
     ],
     "sourcePlatform": "mock"
@@ -89,8 +89,8 @@
     "category": "Electronics > Camera Accessories",
     "sellerName": "Oushang Digital Photography Accessories",
     "images": [
-      { "url": "https://picsum.photos/seed/mock-1003-a/800/800", "isPrimary": true },
-      { "url": "https://picsum.photos/seed/mock-1003-b/800/800", "isPrimary": false }
+      { "url": "https://picsum.photos/id/55/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/id/62/800/800", "isPrimary": false }
     ],
     "price": { "amount": 12.8, "currency": "CNY", "usdAmount": 12.8, "finalAmount": 12.8 },
     "skus": [
@@ -99,14 +99,14 @@
         "options": [{ "name": "Model", "value": "X-T4 / X-T3" }],
         "price": { "amount": 12.8, "currency": "CNY", "usdAmount": 12.8, "finalAmount": 12.8 },
         "inventory": 7740,
-        "imageUrl": "https://picsum.photos/seed/mock-1003-a/800/800"
+        "imageUrl": "https://picsum.photos/id/55/800/800"
       },
       {
         "skuId": "mock-1003-sku-2",
         "options": [{ "name": "Model", "value": "X-S10" }],
         "price": { "amount": 12.8, "currency": "CNY", "usdAmount": 12.8, "finalAmount": 12.8 },
         "inventory": 3120,
-        "imageUrl": "https://picsum.photos/seed/mock-1003-b/800/800"
+        "imageUrl": "https://picsum.photos/id/62/800/800"
       }
     ],
     "sourcePlatform": "mock"
@@ -119,9 +119,9 @@
     "category": "Home & Kitchen > Coffee & Tea",
     "sellerName": "Hangzhou Home Living",
     "images": [
-      { "url": "https://picsum.photos/seed/mock-1004-a/800/800", "isPrimary": true },
-      { "url": "https://picsum.photos/seed/mock-1004-b/800/800", "isPrimary": false },
-      { "url": "https://picsum.photos/seed/mock-1004-c/800/800", "isPrimary": false }
+      { "url": "https://picsum.photos/id/69/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/id/76/800/800", "isPrimary": false },
+      { "url": "https://picsum.photos/id/83/800/800", "isPrimary": false }
     ],
     "price": { "amount": 158, "currency": "CNY", "usdAmount": 158, "finalAmount": 158 },
     "skus": [
@@ -130,14 +130,14 @@
         "options": [{ "name": "Color", "value": "Sand White" }],
         "price": { "amount": 158, "currency": "CNY", "usdAmount": 158, "finalAmount": 158 },
         "inventory": 64,
-        "imageUrl": "https://picsum.photos/seed/mock-1004-a/800/800"
+        "imageUrl": "https://picsum.photos/id/69/800/800"
       },
       {
         "skuId": "mock-1004-sku-2",
         "options": [{ "name": "Color", "value": "Charcoal" }],
         "price": { "amount": 168, "currency": "CNY", "usdAmount": 168, "finalAmount": 168 },
         "inventory": 21,
-        "imageUrl": "https://picsum.photos/seed/mock-1004-b/800/800"
+        "imageUrl": "https://picsum.photos/id/76/800/800"
       }
     ],
     "sourcePlatform": "mock"
@@ -150,7 +150,7 @@
     "category": "Electronics > Keyboard Accessories",
     "sellerName": "DeskTech Supplies",
     "images": [
-      { "url": "https://picsum.photos/seed/mock-1005-a/800/800", "isPrimary": true }
+      { "url": "https://picsum.photos/id/90/800/800", "isPrimary": true }
     ],
     "price": { "amount": 34.5, "currency": "CNY", "usdAmount": 34.5, "finalAmount": 34.5 },
     "skus": [],
@@ -164,8 +164,8 @@
     "category": "Sports & Outdoors > Drinkware",
     "sellerName": "ActiveLife Goods",
     "images": [
-      { "url": "https://picsum.photos/seed/mock-1006-a/800/800", "isPrimary": true },
-      { "url": "https://picsum.photos/seed/mock-1006-b/800/800", "isPrimary": false }
+      { "url": "https://picsum.photos/id/97/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/id/104/800/800", "isPrimary": false }
     ],
     "price": { "amount": 45, "currency": "CNY", "usdAmount": 45, "finalAmount": 45 },
     "skus": [
@@ -174,21 +174,21 @@
         "options": [{ "name": "Color", "value": "Matte Black" }],
         "price": { "amount": 45, "currency": "CNY", "usdAmount": 45, "finalAmount": 45 },
         "inventory": 150,
-        "imageUrl": "https://picsum.photos/seed/mock-1006-a/800/800"
+        "imageUrl": "https://picsum.photos/id/97/800/800"
       },
       {
         "skuId": "mock-1006-sku-2",
         "options": [{ "name": "Color", "value": "Sky Blue" }],
         "price": { "amount": 45, "currency": "CNY", "usdAmount": 45, "finalAmount": 45 },
         "inventory": 88,
-        "imageUrl": "https://picsum.photos/seed/mock-1006-b/800/800"
+        "imageUrl": "https://picsum.photos/id/104/800/800"
       },
       {
         "skuId": "mock-1006-sku-3",
         "options": [{ "name": "Color", "value": "Blush Pink" }],
         "price": { "amount": 45, "currency": "CNY", "usdAmount": 45, "finalAmount": 45 },
         "inventory": 0,
-        "imageUrl": "https://picsum.photos/seed/mock-1006-b/800/800"
+        "imageUrl": "https://picsum.photos/id/104/800/800"
       }
     ],
     "sourcePlatform": "mock"
@@ -201,8 +201,8 @@
     "category": "Electronics > Audio Accessories",
     "sellerName": "GadgetGuard Store",
     "images": [
-      { "url": "https://picsum.photos/seed/mock-1007-a/800/800", "isPrimary": true },
-      { "url": "https://picsum.photos/seed/mock-1007-b/800/800", "isPrimary": false }
+      { "url": "https://picsum.photos/id/111/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/id/118/800/800", "isPrimary": false }
     ],
     "price": { "amount": 9.9, "currency": "CNY", "usdAmount": 9.9, "finalAmount": 9.9 },
     "skus": [
@@ -211,14 +211,14 @@
         "options": [{ "name": "Color", "value": "Clear" }],
         "price": { "amount": 9.9, "currency": "CNY", "usdAmount": 9.9, "finalAmount": 9.9 },
         "inventory": 999,
-        "imageUrl": "https://picsum.photos/seed/mock-1007-a/800/800"
+        "imageUrl": "https://picsum.photos/id/111/800/800"
       },
       {
         "skuId": "mock-1007-sku-2",
         "options": [{ "name": "Color", "value": "Black" }],
         "price": { "amount": 9.9, "currency": "CNY", "usdAmount": 9.9, "finalAmount": 9.9 },
         "inventory": 412,
-        "imageUrl": "https://picsum.photos/seed/mock-1007-b/800/800"
+        "imageUrl": "https://picsum.photos/id/118/800/800"
       }
     ],
     "sourcePlatform": "mock"
@@ -231,9 +231,9 @@
     "category": "Women's Clothing > Sweaters",
     "sellerName": "Tammy's Boutique",
     "images": [
-      { "url": "https://picsum.photos/seed/mock-1008-a/800/800", "isPrimary": true },
-      { "url": "https://picsum.photos/seed/mock-1008-b/800/800", "isPrimary": false },
-      { "url": "https://picsum.photos/seed/mock-1008-c/800/800", "isPrimary": false }
+      { "url": "https://picsum.photos/id/125/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/id/132/800/800", "isPrimary": false },
+      { "url": "https://picsum.photos/id/139/800/800", "isPrimary": false }
     ],
     "price": { "amount": 199, "currency": "CNY", "usdAmount": 199, "finalAmount": 199 },
     "skus": [
@@ -242,14 +242,14 @@
         "options": [{ "name": "Color", "value": "Oatmeal" }, { "name": "Size", "value": "Free Size" }],
         "price": { "amount": 199, "currency": "CNY", "usdAmount": 199, "finalAmount": 199 },
         "inventory": 36,
-        "imageUrl": "https://picsum.photos/seed/mock-1008-a/800/800"
+        "imageUrl": "https://picsum.photos/id/125/800/800"
       },
       {
         "skuId": "mock-1008-sku-2",
         "options": [{ "name": "Color", "value": "Dark Grey" }, { "name": "Size", "value": "Free Size" }],
         "price": { "amount": 199, "currency": "CNY", "usdAmount": 199, "finalAmount": 199 },
         "inventory": 14,
-        "imageUrl": "https://picsum.photos/seed/mock-1008-b/800/800"
+        "imageUrl": "https://picsum.photos/id/132/800/800"
       }
     ],
     "sourcePlatform": "mock"
@@ -262,8 +262,8 @@
     "category": "Electronics > Laptop Accessories",
     "sellerName": "DeskTech Supplies",
     "images": [
-      { "url": "https://picsum.photos/seed/mock-1009-a/800/800", "isPrimary": true },
-      { "url": "https://picsum.photos/seed/mock-1009-b/800/800", "isPrimary": false }
+      { "url": "https://picsum.photos/id/146/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/id/153/800/800", "isPrimary": false }
     ],
     "price": { "amount": 79, "currency": "CNY", "usdAmount": 79, "finalAmount": 79 },
     "skus": [
@@ -272,14 +272,14 @@
         "options": [{ "name": "Color", "value": "Silver" }],
         "price": { "amount": 79, "currency": "CNY", "usdAmount": 79, "finalAmount": 79 },
         "inventory": 53,
-        "imageUrl": "https://picsum.photos/seed/mock-1009-a/800/800"
+        "imageUrl": "https://picsum.photos/id/146/800/800"
       },
       {
         "skuId": "mock-1009-sku-2",
         "options": [{ "name": "Color", "value": "Space Grey" }],
         "price": { "amount": 79, "currency": "CNY", "usdAmount": 79, "finalAmount": 79 },
         "inventory": 27,
-        "imageUrl": "https://picsum.photos/seed/mock-1009-b/800/800"
+        "imageUrl": "https://picsum.photos/id/153/800/800"
       }
     ],
     "sourcePlatform": "mock"
@@ -292,8 +292,8 @@
     "category": "Women's Clothing > Dresses",
     "sellerName": "Tammy's Boutique",
     "images": [
-      { "url": "https://picsum.photos/seed/mock-1010-a/800/800", "isPrimary": true },
-      { "url": "https://picsum.photos/seed/mock-1010-b/800/800", "isPrimary": false }
+      { "url": "https://picsum.photos/id/160/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/id/167/800/800", "isPrimary": false }
     ],
     "price": { "amount": 1, "currency": "USD", "usdAmount": 1, "finalAmount": 1 },
     "skus": [
@@ -302,14 +302,14 @@
         "options": [{ "name": "Color", "value": "Light Gray" }, { "name": "Size", "value": "S" }],
         "price": { "amount": 1, "currency": "USD", "usdAmount": 1, "finalAmount": 1 },
         "inventory": 99999,
-        "imageUrl": "https://picsum.photos/seed/mock-1010-a/800/800"
+        "imageUrl": "https://picsum.photos/id/160/800/800"
       },
       {
         "skuId": "mock-1010-sku-2",
         "options": [{ "name": "Color", "value": "00 White" }, { "name": "Size", "value": "M" }],
         "price": { "amount": 1, "currency": "USD", "usdAmount": 1, "finalAmount": 1 },
         "inventory": 45943,
-        "imageUrl": "https://picsum.photos/seed/mock-1010-b/800/800"
+        "imageUrl": "https://picsum.photos/id/167/800/800"
       }
     ],
     "sourcePlatform": "mock"
@@ -322,9 +322,9 @@
     "category": "Electronics > Phone Accessories",
     "sellerName": "GadgetGuard Store",
     "images": [
-      { "url": "https://picsum.photos/seed/mock-1011-a/800/800", "isPrimary": true },
-      { "url": "https://picsum.photos/seed/mock-1011-b/800/800", "isPrimary": false },
-      { "url": "https://picsum.photos/seed/mock-1011-c/800/800", "isPrimary": false }
+      { "url": "https://picsum.photos/id/174/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/id/181/800/800", "isPrimary": false },
+      { "url": "https://picsum.photos/id/188/800/800", "isPrimary": false }
     ],
     "price": { "amount": 24, "currency": "CNY", "usdAmount": 24, "finalAmount": 24 },
     "skus": [
@@ -333,21 +333,21 @@
         "options": [{ "name": "Color", "value": "Lavender" }],
         "price": { "amount": 24, "currency": "CNY", "usdAmount": 24, "finalAmount": 24 },
         "inventory": 210,
-        "imageUrl": "https://picsum.photos/seed/mock-1011-a/800/800"
+        "imageUrl": "https://picsum.photos/id/174/800/800"
       },
       {
         "skuId": "mock-1011-sku-2",
         "options": [{ "name": "Color", "value": "Sage Green" }],
         "price": { "amount": 24, "currency": "CNY", "usdAmount": 24, "finalAmount": 24 },
         "inventory": 175,
-        "imageUrl": "https://picsum.photos/seed/mock-1011-b/800/800"
+        "imageUrl": "https://picsum.photos/id/181/800/800"
       },
       {
         "skuId": "mock-1011-sku-3",
         "options": [{ "name": "Color", "value": "Black" }],
         "price": { "amount": 24, "currency": "CNY", "usdAmount": 24, "finalAmount": 24 },
         "inventory": 320,
-        "imageUrl": "https://picsum.photos/seed/mock-1011-c/800/800"
+        "imageUrl": "https://picsum.photos/id/188/800/800"
       }
     ],
     "sourcePlatform": "mock"
@@ -360,8 +360,8 @@
     "category": "Home & Kitchen > Storage",
     "sellerName": "Hangzhou Home Living",
     "images": [
-      { "url": "https://picsum.photos/seed/mock-1012-a/800/800", "isPrimary": true },
-      { "url": "https://picsum.photos/seed/mock-1012-b/800/800", "isPrimary": false }
+      { "url": "https://picsum.photos/id/195/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/id/202/800/800", "isPrimary": false }
     ],
     "price": { "amount": 135, "currency": "CNY", "usdAmount": 135, "finalAmount": 135 },
     "skus": [],
@@ -375,9 +375,9 @@
     "category": "Men's Shoes > Athletic",
     "sellerName": "Outdoor Gear Co.",
     "images": [
-      { "url": "https://picsum.photos/seed/mock-1013-a/800/800", "isPrimary": true },
-      { "url": "https://picsum.photos/seed/mock-1013-b/800/800", "isPrimary": false },
-      { "url": "https://picsum.photos/seed/mock-1013-c/800/800", "isPrimary": false }
+      { "url": "https://picsum.photos/id/209/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/id/216/800/800", "isPrimary": false },
+      { "url": "https://picsum.photos/id/223/800/800", "isPrimary": false }
     ],
     "price": { "amount": 159, "currency": "CNY", "usdAmount": 159, "finalAmount": 159 },
     "skus": [
@@ -386,28 +386,28 @@
         "options": [{ "name": "Color", "value": "Black/White" }, { "name": "Size", "value": "42" }],
         "price": { "amount": 159, "currency": "CNY", "usdAmount": 159, "finalAmount": 159 },
         "inventory": 24,
-        "imageUrl": "https://picsum.photos/seed/mock-1013-a/800/800"
+        "imageUrl": "https://picsum.photos/id/209/800/800"
       },
       {
         "skuId": "mock-1013-sku-2",
         "options": [{ "name": "Color", "value": "Black/White" }, { "name": "Size", "value": "43" }],
         "price": { "amount": 159, "currency": "CNY", "usdAmount": 159, "finalAmount": 159 },
         "inventory": 19,
-        "imageUrl": "https://picsum.photos/seed/mock-1013-a/800/800"
+        "imageUrl": "https://picsum.photos/id/209/800/800"
       },
       {
         "skuId": "mock-1013-sku-3",
         "options": [{ "name": "Color", "value": "Grey/Orange" }, { "name": "Size", "value": "42" }],
         "price": { "amount": 159, "currency": "CNY", "usdAmount": 159, "finalAmount": 159 },
         "inventory": 8,
-        "imageUrl": "https://picsum.photos/seed/mock-1013-b/800/800"
+        "imageUrl": "https://picsum.photos/id/216/800/800"
       },
       {
         "skuId": "mock-1013-sku-4",
         "options": [{ "name": "Color", "value": "Grey/Orange" }, { "name": "Size", "value": "44" }],
         "price": { "amount": 165, "currency": "CNY", "usdAmount": 165, "finalAmount": 165 },
         "inventory": 0,
-        "imageUrl": "https://picsum.photos/seed/mock-1013-b/800/800"
+        "imageUrl": "https://picsum.photos/id/216/800/800"
       }
     ],
     "sourcePlatform": "mock"
@@ -420,7 +420,7 @@
     "category": "Office Supplies > Desk Accessories",
     "sellerName": "DeskTech Supplies",
     "images": [
-      { "url": "https://picsum.photos/seed/mock-1014-a/800/800", "isPrimary": true }
+      { "url": "https://picsum.photos/id/230/800/800", "isPrimary": true }
     ],
     "price": { "amount": 28, "currency": "CNY", "usdAmount": 28, "finalAmount": 28 },
     "skus": [
@@ -429,14 +429,14 @@
         "options": [{ "name": "Color", "value": "Black" }],
         "price": { "amount": 28, "currency": "CNY", "usdAmount": 28, "finalAmount": 28 },
         "inventory": 140,
-        "imageUrl": "https://picsum.photos/seed/mock-1014-a/800/800"
+        "imageUrl": "https://picsum.photos/id/230/800/800"
       },
       {
         "skuId": "mock-1014-sku-2",
         "options": [{ "name": "Color", "value": "Rose Gold" }],
         "price": { "amount": 32, "currency": "CNY", "usdAmount": 32, "finalAmount": 32 },
         "inventory": 76,
-        "imageUrl": "https://picsum.photos/seed/mock-1014-a/800/800"
+        "imageUrl": "https://picsum.photos/id/230/800/800"
       }
     ],
     "sourcePlatform": "mock"
@@ -449,8 +449,8 @@
     "category": "Kids' Clothing > Sleepwear",
     "sellerName": "Tammy's Boutique",
     "images": [
-      { "url": "https://picsum.photos/seed/mock-1015-a/800/800", "isPrimary": true },
-      { "url": "https://picsum.photos/seed/mock-1015-b/800/800", "isPrimary": false }
+      { "url": "https://picsum.photos/id/237/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/id/244/800/800", "isPrimary": false }
     ],
     "price": { "amount": 69, "currency": "CNY", "usdAmount": 69, "finalAmount": 69 },
     "skus": [
@@ -459,21 +459,21 @@
         "options": [{ "name": "Print", "value": "Dinosaur" }, { "name": "Size", "value": "110cm" }],
         "price": { "amount": 69, "currency": "CNY", "usdAmount": 69, "finalAmount": 69 },
         "inventory": 33,
-        "imageUrl": "https://picsum.photos/seed/mock-1015-a/800/800"
+        "imageUrl": "https://picsum.photos/id/237/800/800"
       },
       {
         "skuId": "mock-1015-sku-2",
         "options": [{ "name": "Print", "value": "Dinosaur" }, { "name": "Size", "value": "120cm" }],
         "price": { "amount": 69, "currency": "CNY", "usdAmount": 69, "finalAmount": 69 },
         "inventory": 28,
-        "imageUrl": "https://picsum.photos/seed/mock-1015-a/800/800"
+        "imageUrl": "https://picsum.photos/id/237/800/800"
       },
       {
         "skuId": "mock-1015-sku-3",
         "options": [{ "name": "Print", "value": "Rocket" }, { "name": "Size", "value": "110cm" }],
         "price": { "amount": 69, "currency": "CNY", "usdAmount": 69, "finalAmount": 69 },
         "inventory": 17,
-        "imageUrl": "https://picsum.photos/seed/mock-1015-b/800/800"
+        "imageUrl": "https://picsum.photos/id/244/800/800"
       }
     ],
     "sourcePlatform": "mock"
@@ -486,8 +486,8 @@
     "category": "Home & Kitchen > Air Care",
     "sellerName": "Hangzhou Home Living",
     "images": [
-      { "url": "https://picsum.photos/seed/mock-1016-a/800/800", "isPrimary": true },
-      { "url": "https://picsum.photos/seed/mock-1016-b/800/800", "isPrimary": false }
+      { "url": "https://picsum.photos/id/251/800/800", "isPrimary": true },
+      { "url": "https://picsum.photos/id/258/800/800", "isPrimary": false }
     ],
     "price": { "amount": 39.9, "currency": "CNY", "usdAmount": 39.9, "finalAmount": 39.9 },
     "skus": [
@@ -496,14 +496,14 @@
         "options": [{ "name": "Color", "value": "White" }],
         "price": { "amount": 39.9, "currency": "CNY", "usdAmount": 39.9, "finalAmount": 39.9 },
         "inventory": 205,
-        "imageUrl": "https://picsum.photos/seed/mock-1016-a/800/800"
+        "imageUrl": "https://picsum.photos/id/251/800/800"
       },
       {
         "skuId": "mock-1016-sku-2",
         "options": [{ "name": "Color", "value": "Mint Green" }],
         "price": { "amount": 39.9, "currency": "CNY", "usdAmount": 39.9, "finalAmount": 39.9 },
         "inventory": 112,
-        "imageUrl": "https://picsum.photos/seed/mock-1016-b/800/800"
+        "imageUrl": "https://picsum.photos/id/258/800/800"
       }
     ],
     "sourcePlatform": "mock"

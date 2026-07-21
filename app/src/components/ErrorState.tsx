@@ -1,9 +1,10 @@
-import { StyleSheet, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 import { Button } from './Button';
 import { Text } from './Text';
+import { VStack } from '../../components/ui/vstack';
 import { t } from '@/i18n';
-import { colors, spacing } from '@/theme';
+import { colors } from '@/theme';
 
 interface ErrorStateProps {
   title: string;
@@ -14,35 +15,17 @@ interface ErrorStateProps {
 
 export function ErrorState({ title, message, onRetry, retryLabel = t('common.tryAgain') }: ErrorStateProps) {
   return (
-    <View style={styles.container}>
-      <Text variant="subheading" style={styles.title}>
+    <VStack className="flex-1 items-center justify-center p-xl" space="sm">
+      <Ionicons name="alert-circle-outline" size={40} color={colors.error} style={{ marginBottom: 4 }} />
+      <Text variant="subheading" style={{ textAlign: 'center' }}>
         {title}
       </Text>
       {message ? (
-        <Text variant="body" color={colors.textSecondary} style={styles.message}>
+        <Text variant="body" color={colors.textSecondary} style={{ textAlign: 'center' }}>
           {message}
         </Text>
       ) : null}
-      {onRetry ? <Button label={retryLabel} onPress={onRetry} style={styles.button} /> : null}
-    </View>
+      {onRetry ? <Button label={retryLabel} onPress={onRetry} style={{ marginTop: 16 }} /> : null}
+    </VStack>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: spacing.xl,
-  },
-  title: {
-    textAlign: 'center',
-  },
-  message: {
-    marginTop: spacing.sm,
-    textAlign: 'center',
-  },
-  button: {
-    marginTop: spacing.lg,
-  },
-});

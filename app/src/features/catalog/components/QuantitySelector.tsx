@@ -1,6 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-
-import { colors, radius, spacing, typography } from '@/theme';
+import { Pressable, Text, View } from 'react-native';
 
 interface QuantitySelectorProps {
   quantity: number;
@@ -13,53 +11,28 @@ export function QuantitySelector({ quantity, maxQuantity, onChange }: QuantitySe
   const canDecrement = quantity > 1;
 
   return (
-    <View style={styles.container}>
+    <View className="flex-row items-center gap-lg">
       <Pressable
         disabled={!canDecrement}
-        style={[styles.button, !canDecrement && styles.buttonDisabled]}
+        className={`w-9 h-9 rounded-md bg-background border border-border items-center justify-center ${
+          !canDecrement ? 'opacity-40' : ''
+        }`}
         onPress={() => onChange(quantity - 1)}
       >
-        <Text style={styles.buttonLabel}>−</Text>
+        <Text className="font-sans-medium text-[17px] leading-[22px] text-foreground">−</Text>
       </Pressable>
-      <Text style={styles.quantity}>{quantity}</Text>
+      <Text className="font-sans-semibold text-[15px] leading-[20px] text-foreground min-w-6 text-center">
+        {quantity}
+      </Text>
       <Pressable
         disabled={!canIncrement}
-        style={[styles.button, !canIncrement && styles.buttonDisabled]}
+        className={`w-9 h-9 rounded-md bg-background border border-border items-center justify-center ${
+          !canIncrement ? 'opacity-40' : ''
+        }`}
         onPress={() => onChange(quantity + 1)}
       >
-        <Text style={styles.buttonLabel}>+</Text>
+        <Text className="font-sans-medium text-[17px] leading-[22px] text-foreground">+</Text>
       </Pressable>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: spacing.lg,
-  },
-  button: {
-    width: 36,
-    height: 36,
-    borderRadius: radius.md,
-    backgroundColor: colors.surface,
-    borderWidth: 1,
-    borderColor: colors.border,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  buttonDisabled: {
-    opacity: 0.4,
-  },
-  buttonLabel: {
-    ...typography.subheading,
-    color: colors.textPrimary,
-  },
-  quantity: {
-    ...typography.bodyStrong,
-    color: colors.textPrimary,
-    minWidth: 24,
-    textAlign: 'center',
-  },
-});

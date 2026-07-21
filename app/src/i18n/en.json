@@ -1,6 +1,7 @@
 {
   "common": {
     "addToBasket": "Add to basket",
+    "addedToBasket": "Added to basket",
     "tryAgain": "Try again",
     "networkError": "Could not reach the server. Check your connection and try again.",
     "unexpectedResponse": "The server returned an unexpected response.",
@@ -14,9 +15,13 @@
     "checkout": "Checkout",
     "orderPlaced": "Order placed",
     "paymentInstructions": "Payment instructions",
-    "orderLookup": "Track an order"
+    "orderLookup": "Track an order",
+    "search": "Search"
   },
   "home": {
+    "heroTitle": "Sourced from China, delivered to you",
+    "heroSubtitle": "Browse thousands of products at honest prices.",
+    "heroCta": "Start searching",
     "searchPlaceholder": "Search products",
     "recentSearchesHeading": "Recent searches",
     "recentSearchesEmpty": "Your recent searches will show up here.",
@@ -37,14 +42,19 @@
     "loadErrorTitle": "Couldn't load product",
     "quantityLabel": "Quantity",
     "selectOptions": "Select options",
-    "addedToBasket": "Added to basket."
+    "descriptionHeading": "Description",
+    "relatedProductsHeading": "You may also like",
+    "inStock": "In stock",
+    "lowStock": "Only {count} left",
+    "outOfStock": "Out of stock"
   },
   "basket": {
     "emptyTitle": "Your basket is empty",
     "emptyMessage": "Browse products and add something you like.",
     "browseProducts": "Browse products",
-    "checkout": "Checkout",
+    "checkout": "Proceed to checkout",
     "remove": "Remove",
+    "share": "Share",
     "subtotal": "Subtotal",
     "serviceAndMarkup": "Service & markup",
     "total": "Total"
@@ -115,6 +125,10 @@
     "settingsLinkLabel": "Track an order"
   },
   "settings": {
+    "sectionOrders": "Orders",
+    "sectionPreferences": "Preferences",
+    "sectionData": "Data",
+    "sectionAbout": "About",
     "currencyLabel": "Currency",
     "currencyValue": "USD",
     "languageLabel": "Language",

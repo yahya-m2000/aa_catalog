@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
@@ -9,7 +9,7 @@ import { Text } from '@/components/Text';
 import { checkoutFormSchema, type CheckoutFormValues } from '@/features/checkout/schema/checkoutForm.schema';
 import { t } from '@/i18n';
 import type { PaymentMethod } from '@/services/api/orders.api';
-import { colors, radius, spacing } from '@/theme';
+import { colors } from '@/theme';
 
 interface CheckoutFormProps {
   onSubmit: (values: CheckoutFormValues, paymentMethod: PaymentMethod) => void;
@@ -55,7 +55,7 @@ export function CheckoutForm({ onSubmit, isSubmitting }: CheckoutFormProps) {
   });
 
   return (
-    <View style={styles.container}>
+    <View className="gap-md">
       {FIELDS.map((fieldConfig) => (
         <Controller
           key={fieldConfig.name}
@@ -76,18 +76,20 @@ export function CheckoutForm({ onSubmit, isSubmitting }: CheckoutFormProps) {
         />
       ))}
 
-      <View style={styles.paymentSection}>
+      <View className="gap-xs">
         <Text variant="caption" color={colors.textSecondary}>
           {t('checkout.paymentMethodHeading')}
         </Text>
-        <View style={styles.paymentOptionsRow}>
+        <View className="flex-row gap-sm">
           {PAYMENT_METHODS.map((method) => {
             const isSelected = paymentMethod === method.value;
             return (
               <Pressable
                 key={method.value}
                 disabled={isSubmitting}
-                style={[styles.paymentOption, isSelected && styles.paymentOptionSelected]}
+                className={`flex-1 py-md rounded-md items-center border ${
+                  isSelected ? 'bg-primary border-primary' : 'bg-background border-border'
+                }`}
                 onPress={() => setPaymentMethod(method.value)}
               >
                 <Text variant="bodyStrong" color={isSelected ? colors.white : colors.textSecondary}>
@@ -103,38 +105,9 @@ export function CheckoutForm({ onSubmit, isSubmitting }: CheckoutFormProps) {
         label={isSubmitting ? t('checkout.placingOrder') : t('checkout.placeOrder')}
         variant="secondary"
         disabled={isSubmitting}
-        style={styles.submitButton}
+        style={{ marginTop: 8 }}
         onPress={handleSubmit((values) => onSubmit(values, paymentMethod))}
       />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    gap: spacing.md,
-  },
-  paymentSection: {
-    gap: spacing.xs,
-  },
-  paymentOptionsRow: {
-    flexDirection: 'row',
-    gap: spacing.sm,
-  },
-  paymentOption: {
-    flex: 1,
-    paddingVertical: spacing.md,
-    borderRadius: radius.md,
-    borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.surface,
-    alignItems: 'center',
-  },
-  paymentOptionSelected: {
-    backgroundColor: colors.textPrimary,
-    borderColor: colors.textPrimary,
-  },
-  submitButton: {
-    marginTop: spacing.sm,
-  },
-});

@@ -1,48 +1,67 @@
 import { useRouter } from 'expo-router';
-import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { useMemo } from 'react';
+import { ScrollView, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { EmptyState } from '@/components/EmptyState';
-import { ErrorState } from '@/components/ErrorState';
-import { LoadingState } from '@/components/LoadingState';
 import { useBasketStore } from '@/features/basket/store/basket.store';
-import { ProductGrid } from '@/features/catalog/components/ProductGrid';
-import { RecentSearches } from '@/features/catalog/components/RecentSearches';
-import { SearchBar } from '@/features/catalog/components/SearchBar';
-import { SortFilterTabs } from '@/features/catalog/components/SortFilterTabs';
-import { useProductSearch } from '@/features/catalog/hooks/useProductSearch';
-import { useRecentSearchesStore } from '@/features/catalog/store/recentSearches.store';
+import { useAppToast } from '@/components/useAppToast';
+import { CategoryRail } from '@/features/catalog/components/CategoryRail';
+import { FeatureSpotlight } from '@/features/catalog/components/FeatureSpotlight';
+import { HeroBanner } from '@/features/catalog/components/HeroBanner';
+import { ProductGridSection } from '@/features/catalog/components/ProductGridSection';
+import { ProductRail } from '@/features/catalog/components/ProductRail';
+import type { ProductCardSize } from '@/features/catalog/components/ProductCard';
+import { useHomeCollections } from '@/features/catalog/hooks/useHomeCollections';
 import { t } from '@/i18n';
-import type { ProductSortOption } from '@/services/api/products.api';
-import { colors, spacing } from '@/theme';
+import { useTabBarScrollHandler } from '@/navigation/tabBarVisibility';
+import { spacing } from '@/theme';
 import type { NormalizedProduct } from '@/types/product';
+
+const TAB_BAR_HEIGHT = 64;
+
+const BADGE_DIMENSIONS = new Set(['best-sellers', 'new-arrivals']);
+
+// Curated collections (few, hand-picked items) get larger, more prominent
+// cards; everything else is a standard browse-at-volume rail. Density is
+// tied to what the rail *is*, not rotated arbitrarily by position.
+const CURATED_DIMENSIONS = new Set(['trending', 'best-sellers', 'new-arrivals']);
+
+function railCardSize(dimension: string): ProductCardSize {
+  return CURATED_DIMENSIONS.has(dimension) ? 'large' : 'regular';
+}
 
 export function HomeScreen() {
   const router = useRouter();
-  const [searchInput, setSearchInput] = useState('');
-  const [activeQuery, setActiveQuery] = useState('');
-  const [sort, setSort] = useState<ProductSortOption>('relevance');
-  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const insets = useSafeAreaInsets();
 
-  const searches = useRecentSearchesStore((state) => state.searches);
-  const addSearch = useRecentSearchesStore((state) => state.addSearch);
   const addItem = useBasketStore((state) => state.addItem);
+  const { showToast } = useAppToast();
+  const { collections } = useHomeCollections();
 
-  const { products, status, errorMessage, isRefreshing, refresh } = useProductSearch(activeQuery, sort);
+  const categories = useMemo(
+    () => collections.map((collection) => ({ label: collection.label })),
+    [collections],
+  );
 
-  const showRecentSearches = isSearchFocused || activeQuery.length === 0;
+  const heroImageUrl = useMemo(() => {
+    const deals = collections.find((collection) => collection.dimension === 'deals');
+    const firstProduct = (deals ?? collections[0])?.items[0];
+    return (firstProduct?.images.find((image) => image.isPrimary) ?? firstProduct?.images[0])?.url;
+  }, [collections]);
 
-  const handleSubmitSearch = () => {
-    const trimmed = searchInput.trim();
-    setActiveQuery(trimmed);
-    if (trimmed) addSearch(trimmed);
-    setIsSearchFocused(false);
-  };
+  const spotlightDimension = useMemo(() => {
+    const candidate = collections.find(
+      (collection) => collection.dimension !== 'deals' && collection.dimension !== 'trending' && collection.items.length > 0,
+    );
+    return candidate?.dimension;
+  }, [collections]);
 
-  const handleSelectRecentSearch = (query: string) => {
-    setSearchInput(query);
-    setActiveQuery(query);
-    setIsSearchFocused(false);
+  const goToSearch = (query?: string) => {
+    if (query) {
+      router.push({ pathname: '/search', params: { q: query } });
+    } else {
+      router.push('/search');
+    }
   };
 
   const handleProductPress = (product: NormalizedProduct) => {
@@ -61,52 +80,66 @@ export function HomeScreen() {
       quantity: 1,
       unitPrice: defaultSku ? defaultSku.price : product.price,
     });
+    showToast(t('common.addedToBasket'));
   };
 
+  const tabBarHeight = TAB_BAR_HEIGHT + insets.bottom;
+  const handleScroll = useTabBarScrollHandler(tabBarHeight);
+
   return (
-    <View style={styles.container}>
-      <SearchBar
-        value={searchInput}
-        onChangeText={setSearchInput}
-        onFocus={() => setIsSearchFocused(true)}
-        onBlur={() => setIsSearchFocused(false)}
-        onSubmit={handleSubmitSearch}
-      />
-      {!showRecentSearches ? <SortFilterTabs selected={sort} onSelect={setSort} /> : null}
-      <View style={styles.content}>
-        {showRecentSearches ? (
-          <RecentSearches searches={searches} onSelect={handleSelectRecentSearch} />
-        ) : status === 'loading' ? (
-          <LoadingState message={t('home.loadingProducts')} />
-        ) : status === 'error' ? (
-          <ErrorState
-            title={t('home.loadProductsErrorTitle')}
-            message={errorMessage ?? undefined}
-            onRetry={refresh}
-          />
-        ) : products.length === 0 ? (
-          <EmptyState title={t('home.noProductsFoundTitle')} message={t('home.noProductsFoundMessage')} />
-        ) : (
-          <ProductGrid
-            products={products}
-            onProductPress={handleProductPress}
-            onAddToBasket={handleAddToBasket}
-            isRefreshing={isRefreshing}
-            onRefresh={refresh}
-          />
-        )}
-      </View>
+    <View className="flex-1 bg-background">
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: tabBarHeight + spacing.xl }}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
+      >
+        <HeroBanner
+          title={t('home.heroTitle')}
+          subtitle={t('home.heroSubtitle')}
+          ctaLabel={t('home.heroCta')}
+          imageUrl={heroImageUrl}
+          onPress={() => goToSearch()}
+        />
+        <CategoryRail categories={categories} onSelect={goToSearch} />
+        {collections.map((collection) => {
+          if (collection.dimension === 'deals') {
+            return (
+              <ProductGridSection
+                key={collection.dimension}
+                label={collection.label}
+                products={collection.items}
+                onProductPress={handleProductPress}
+                onSeeAll={() => goToSearch(collection.label)}
+              />
+            );
+          }
+
+          if (collection.dimension === spotlightDimension) {
+            return (
+              <FeatureSpotlight
+                key={collection.dimension}
+                label={collection.label}
+                product={collection.items[0]}
+                onPress={handleProductPress}
+              />
+            );
+          }
+
+          return (
+            <ProductRail
+              key={collection.dimension}
+              label={collection.label}
+              badge={BADGE_DIMENSIONS.has(collection.dimension) ? collection.label : undefined}
+              products={collection.items}
+              onProductPress={handleProductPress}
+              onAddToBasket={handleAddToBasket}
+              onSeeAll={() => goToSearch(collection.label)}
+              cardSize={railCardSize(collection.dimension)}
+            />
+          );
+        })}
+      </ScrollView>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-  content: {
-    flex: 1,
-    marginTop: spacing.md,
-  },
-});

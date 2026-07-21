@@ -1,10 +1,10 @@
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 
 import { Card } from '@/components/Card';
 import { PriceBreakdown } from '@/components/PriceBreakdown';
 import { Text } from '@/components/Text';
 import { t } from '@/i18n';
-import { colors, spacing } from '@/theme';
+import { colors } from '@/theme';
 import type { BasketItem, BasketTotals } from '@/types/basket';
 
 interface BasketReviewSummaryProps {
@@ -15,15 +15,18 @@ interface BasketReviewSummaryProps {
 
 export function BasketReviewSummary({ items, totals, country }: BasketReviewSummaryProps) {
   return (
-    <Card style={styles.container}>
-      <Text variant="bodyStrong" style={styles.heading}>
+    <Card className="gap-sm">
+      <Text variant="bodyStrong" style={{ marginBottom: 4 }}>
         {t('checkout.orderSummaryHeading')}
       </Text>
       {items.map((item) => {
         const variantSummary = item.selectedSku?.options.map((option) => option.value).join(', ');
         return (
-          <View key={`${item.productId}::${item.selectedSku?.skuId ?? ''}`} style={styles.itemRow}>
-            <View style={styles.itemInfo}>
+          <View
+            key={`${item.productId}::${item.selectedSku?.skuId ?? ''}`}
+            className="flex-row justify-between items-start gap-md"
+          >
+            <View className="flex-1">
               <Text variant="body" color={colors.textPrimary} numberOfLines={1}>
                 {item.productTitle}
               </Text>
@@ -42,31 +45,8 @@ export function BasketReviewSummary({ items, totals, country }: BasketReviewSumm
           </View>
         );
       })}
-      <View style={styles.divider} />
+      <View className="h-px bg-border my-sm" />
       <PriceBreakdown totals={totals} country={country} />
     </Card>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    gap: spacing.sm,
-  },
-  heading: {
-    marginBottom: spacing.xs,
-  },
-  itemRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    gap: spacing.md,
-  },
-  itemInfo: {
-    flex: 1,
-  },
-  divider: {
-    height: 1,
-    backgroundColor: colors.border,
-    marginVertical: spacing.sm,
-  },
-});
